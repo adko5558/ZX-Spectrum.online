@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ZX Spectrum Minecraft Server</title>
+
+<style>
+
+/* ===== ROOT & COLORS ===== */
+:root {
+    --bg-dark: #0a0f18;
+    --bg-card: #121924;
+    --accent: #4cc9f0;
+    --accent-light: #80ffdb;
+    --text-light: #e8eef5;
+    --muted: #8fa9c7;
+    --white: #fff;
+    --radius: 12px;
+    --transition: 0.25s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Inter", Arial, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+/* ===== GLOBAL UTILITIES ===== */
+.container {
+    width: min(100% - 2rem, 1200px);
+    margin-inline: auto;
+}
+
+section {
+    padding: 4rem 0;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+    text-align: center;
+}
+
+p {
+    font-size: 1rem;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+    padding: 0.95rem 2rem;
+    border-radius: var(--radius);
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    color: #000;
+}
+
+.btn-secondary {
+    background: #1e2736;
+    color: var(--text-light);
+    border: 1px solid #273449;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    opacity: 0.95;
+}
+
+/* ===== HERO ===== */
+.hero {
+    position: relative;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("https://media.discordapp.net/attachments/1454938281102934081/1454940293169283168/image.png") center/cover no-repeat;
+    filter: brightness(0.4) blur(8px);
+    z-index: -1;
+}
+
+.hero img.logo {
+    width: 150px;
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero p {
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+}
+
+/* ===== BUTTON GROUP ===== */
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* ===== SERVER INFO ===== */
+.ip-box {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    border: 1px solid #1f2a3a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.ip-code {
+    font-family: "Courier New", monospace;
+    font-size: 1.3rem;
+    letter-spacing: 0.05rem;
+    color: var(--accent-light);
+}
+
+.section-sub {
+    max-width: 900px;
+    margin: auto;
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* ===== GRID LAYOUT ===== */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    border: 1px solid #1e2736;
+    padding: 1.5rem;
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+}
+
+.card h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+}
+
+/* ===== GALLERY ===== */
+.gallery {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.gallery img:hover {
+    scale: 1.05;
+}
+
+/* ===== LIGHTBOX ===== */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(3px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: var(--radius);
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    color: var(--muted);
+    padding: 2rem 0;
+    font-size: 0.9rem;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <img class="logo" src="https://www.techadvisor.com/wp-content/uploads/2022/06/zx-spectrum-why-most-important-computer-in-history.jpg?quality=50&strip=all" alt="ZX Spectrum Logo">
+    <h1>ZX Spectrum Minecraft Server</h1>
+    <p class="section-sub">
+      A modern self-hosted Minecraft server with minigames, vehicles and pure chaos.
+    </p>
+
+    <div class="hero-buttons">
+      <button class="btn btn-primary" onclick="copyIP()">Copy Server IP</button>
+      <a href="https://discord.com/invite/5c2n8drRzc" target="_blank" class="btn btn-secondary">Join our Discord</a>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section>
+  <h2>About the Server</h2>
+  <p class="section-sub">
+    ZX Spectrum Minecraft Server is a fully self-hosted Minecraft server running
+    on PaperMC 1.16.5 with support for newer versions, unique game modes,
+    custom areas and an active community.
+  </p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>⚙️ Technology</h3>
+      <p>PaperMC 1.16.5 • Versions 1.8.9 – 1.21.11 • Self-hosted</p>
+    </div>
+    <div class="card">
+      <h3>🎮 Game Modes</h3>
+      <p>Survival, Mob Arena, SUMO, WAR and more custom challenges.</p>
+    </div>
+    <div class="card">
+      <h3>🚗 Vehicles</h3>
+      <p>Cars, planes, helicopters and boats – no mods required.</p>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section>
+  <h2>How to Join</h2>
+
+  <div class="ip-box container">
+    <div class="ip-code" id="ip">mc.zx-spectrum.online:5558</div>
+    <button class="btn btn-primary" onclick="copyIP()">Copy IP</button>
+  </div>
+
+  <p class="section-sub">
+    Recommended version: <strong>1.16.5 or newer</strong><br>
+    Supported versions: 1.8.9 – 1.21.11
+  </p>
+</section>
+
+<!-- GALLERY -->
+<section>
+  <h2>Gallery</h2>
+  <div class="gallery container">
+    <!-- your images -->
+    <img src="https://i.postimg.cc/nrNg8VfZ/image.webp" alt="">
+    <img src="https://i.postimg.cc/2jtPLGb1/image.webp" alt="">
+    <img src="https://i.postimg.cc/9XkvwbRG/image.webp" alt="">
+    <img src="https://i.postimg.cc/J7F9HxD3/image.webp" alt="">
+    <img src="https://i.postimg.cc/h4YHQszs/image.webp" alt="">
+    <img src="https://i.postimg.cc/hvX63zwt/image.webp" alt="">
+    <img src="https://i.postimg.cc/Gt6V03wv/image.webp" alt="">
+    <img src="https://i.postimg.cc/6qFgs6Jd/image.webp" alt="">
+    <img src="https://i.postimg.cc/Vv2pysQW/image.webp" alt="">
+  </div>
+</section>
+
+<!-- RULES -->
+<section>
+  <h2>Server Rules</h2>
+
+  <div class="container">
+    <ul style="list-style:inside disc; color:var(--text-light); font-size:1rem; gap:0.7rem; line-height:1.6;">
+      <li>No griefing – respect others’ builds.</li>
+      <li>No cheating or hacking.</li>
+      <li>Be respectful in chat.</li>
+      <li>No stealing from others.</li>
+      <li>No exploiting bugs.</li>
+      <li>Keep builds appropriate.</li>
+      <li>Reduce lag – avoid excessive redstone.</li>
+      <li>Listen to staff & admin decisions.</li>
+      <li>Respect the god — KvikKvikKvikKvik.</li>
+      <li>KILL EVERYONE!!! (…but nicely 😄)</li>
+    </ul>
+  </div>
+</section>
+
+<footer>© 2026 ZX Spectrum Minecraft Server • Made with 💙 for Minecraft</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img">
+</div>
+
+<script>
+function copyIP(){
+    const ip = "mc.zx-spectrum.online:5558";
+    navigator.clipboard.writeText(ip);
+
+    alert("Server IP copied ➜ " + ip);
+}
+
+document.querySelectorAll(".gallery img").forEach(img=>{
+    img.onclick = () => {
+        document.getElementById("lightbox-img").src = img.src;
+        document.getElementById("lightbox").style.display = "flex";
+    }
+});
+
+function closeLightbox(){
+    document.getElementById("lightbox").style.display = "none";
+}
+</script>
+
+</body>
+</html>
