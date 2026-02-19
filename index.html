@@ -2,105 +2,198 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZX Spectrum!</title>
+<title>ZX Spectrum! - Integrated Lights-Out 3</title>
+
 <style>
-    body {
-        margin: 0;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #f0f2f5;
-        color: #333;
-    }
+/* ===== GLOBAL ===== */
+body {
+    margin: 0;
+    font-family: Tahoma, Verdana, Arial, sans-serif;
+    font-size: 13px;
+    background: #d6dbe3;
+    color: #000;
+}
 
-    header {
-        background-color: #003366;
-        color: #ffffff;
-        padding: 20px 40px;
-        font-size: 24px;
-        font-weight: bold;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+/* ===== TOP BAR ===== */
+.topbar {
+    background: linear-gradient(#5b7fa6, #2f567f);
+    color: #fff;
+    padding: 12px 20px;
+    border-bottom: 1px solid #1f3b59;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+}
 
-    header .logo {
-        font-size: 28px;
-    }
+.topbar .title {
+    font-size: 18px;
+    font-weight: bold;
+}
 
-    main {
-        padding: 40px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 25px;
-    }
+.topbar .subtitle {
+    font-size: 11px;
+    color: #d0d9e5;
+}
 
-    .panel {
-        background-color: #ffffff;
-        border: 1px solid #c0c0c0;
-        border-radius: 5px;
-        width: 320px;
-        text-align: center;
-        padding: 30px 20px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
+/* ===== LAYOUT ===== */
+.container {
+    display: flex;
+}
 
-    .panel h2 {
-        margin-top: 0;
-        color: #003366;
-    }
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 220px;
+    background: #e9edf2;
+    border-right: 1px solid #aab4c3;
+    padding: 10px;
+}
 
-    .btn {
-        display: block;
-        margin: 15px auto;
-        padding: 12px 25px;
-        background-color: #0078d4;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 3px;
-        font-weight: bold;
-        transition: background 0.2s;
-    }
+.sidebar h3 {
+    font-size: 12px;
+    margin: 10px 0 5px;
+    color: #003366;
+    border-bottom: 1px solid #c5ccd6;
+    padding-bottom: 3px;
+}
 
-    .btn:hover {
-        background-color: #005a9e;
-    }
+.sidebar a {
+    display: block;
+    padding: 4px 6px;
+    text-decoration: none;
+    color: #000;
+    border: 1px solid transparent;
+}
 
-    .dev-build {
-        font-family: "Courier New", monospace;
-        color: #900;
-        margin-top: 15px;
-        font-size: 14px;
-    }
+.sidebar a:hover {
+    background: #d0d7e2;
+    border: 1px solid #aab4c3;
+}
 
-    footer {
-        background-color: #003366;
-        color: #ccc;
-        text-align: center;
-        padding: 15px 0;
-        margin-top: 40px;
-        font-size: 13px;
-    }
+.sidebar a.active {
+    background: #c5d3e4;
+    border: 1px solid #7f9db9;
+    font-weight: bold;
+}
+
+/* ===== MAIN CONTENT ===== */
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+.panel {
+    background: #f7f9fc;
+    border: 1px solid #9aa8b7;
+    margin-bottom: 20px;
+}
+
+.panel-header {
+    background: linear-gradient(#e3e9f2, #cbd6e2);
+    padding: 6px 10px;
+    font-weight: bold;
+    border-bottom: 1px solid #9aa8b7;
+}
+
+.panel-body {
+    padding: 15px;
+}
+
+/* ===== BUTTONS ===== */
+.button {
+    display: inline-block;
+    padding: 6px 14px;
+    background: linear-gradient(#fefefe, #d6dbe3);
+    border: 1px solid #7f9db9;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    font-size: 12px;
+    margin: 5px 0;
+}
+
+.button:hover {
+    background: linear-gradient(#ffffff, #c5ccd6);
+}
+
+/* ===== STATUS BAR ===== */
+.statusbar {
+    background: linear-gradient(#2f567f, #1f3b59);
+    color: #fff;
+    padding: 6px 15px;
+    font-size: 12px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    border-top: 1px solid #1a2f47;
+}
+
+.status-ok {
+    color: #7CFF7C;
+    font-weight: bold;
+}
+
+.dev-build {
+    font-family: "Courier New", monospace;
+    color: #990000;
+    margin-top: 15px;
+    font-size: 12px;
+}
 </style>
 </head>
+
 <body>
 
-<header>
-    <div class="logo">ZX Spectrum!</div>
-</header>
+<div class="topbar">
+    <div class="title">Integrated Lights-Out 3</div>
+    <div class="subtitle">ZX Spectrum ProLiant DL380 G7</div>
+</div>
 
-<main>
-    <div class="panel">
-        <h2>Server Links</h2>
-        <a class="btn" href="http://server.zx-spectrum.online:5558/" target="_blank">Home Server</a>
-        <a class="btn" href="http://zx-spectrum.online:5558/zx-spectrum" target="_blank">Minecraft Server Site</a>
-        <div class="dev-build">Dev Build: 0.9.7-beta</div>
+<div class="container">
+
+    <!-- LEFT MENU -->
+    <div class="sidebar">
+        <h3>Information</h3>
+        <a href="#">Overview</a>
+        <a href="#">System Information</a>
+        <a href="#">Diagnostics</a>
+
+        <h3>Remote Console</h3>
+        <a href="#">Launch Console</a>
+
+        <h3>Administration</h3>
+        <a href="#" class="active">Server Links</a>
+        <a href="#">Licensing</a>
+        <a href="#">Network</a>
     </div>
-</main>
 
-<footer>
-    &copy; 2026 ZX Spectrum!
-</footer>
+    <!-- MAIN CONTENT -->
+    <div class="content">
+
+        <div class="panel">
+            <div class="panel-header">Server Links</div>
+            <div class="panel-body">
+                <p>Select a destination:</p>
+
+                <a class="button" href="http://server.zx-spectrum.online:5558/" target="_blank">
+                    Home Server
+                </a>
+                <br>
+                <a class="button" href="http://zx-spectrum.online:5558/zx-spectrum" target="_blank">
+                    Minecraft Server Site
+                </a>
+
+                <div class="dev-build">
+                    Dev Build: 0.9.7-beta
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="statusbar">
+    <div>POWER: <span class="status-ok">ON</span></div>
+    <div>UID: OFF</div>
+</div>
 
 </body>
 </html>
