@@ -2,198 +2,299 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>ZX Spectrum! - Integrated Lights-Out 3</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ZX Spectrum Survival Network</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-/* ===== GLOBAL ===== */
-body {
-    margin: 0;
-    font-family: Tahoma, Verdana, Arial, sans-serif;
-    font-size: 13px;
-    background: #d6dbe3;
-    color: #000;
+
+/* ===== GLOBAL RESET ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    background: radial-gradient(circle at 20% 20%, #1a1f35, #0b0f1a 60%);
+    color:#fff;
+    font-family:'Roboto Mono', monospace;
+    overflow-x:hidden;
 }
 
-/* ===== TOP BAR ===== */
-.topbar {
-    background: linear-gradient(#5b7fa6, #2f567f);
-    color: #fff;
-    padding: 12px 20px;
-    border-bottom: 1px solid #1f3b59;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+/* ===== HERO ===== */
+.hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:40px 20px;
+    position:relative;
 }
 
-.topbar .title {
-    font-size: 18px;
-    font-weight: bold;
+.hero h1{
+    font-family:'Orbitron', sans-serif;
+    font-size:3.5rem;
+    background:linear-gradient(90deg,#00f5ff,#ff00c8);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom:20px;
 }
 
-.topbar .subtitle {
-    font-size: 11px;
-    color: #d0d9e5;
+.hero p{
+    opacity:.8;
+    max-width:700px;
+    margin-bottom:30px;
 }
 
-/* ===== LAYOUT ===== */
-.container {
-    display: flex;
+.btn{
+    padding:15px 30px;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+    display:inline-block;
+    transition:.3s;
 }
 
-/* ===== SIDEBAR ===== */
-.sidebar {
-    width: 220px;
-    background: #e9edf2;
-    border-right: 1px solid #aab4c3;
-    padding: 10px;
+.btn-primary{
+    background:linear-gradient(90deg,#00f5ff,#ff00c8);
+    color:#000;
 }
 
-.sidebar h3 {
-    font-size: 12px;
-    margin: 10px 0 5px;
-    color: #003366;
-    border-bottom: 1px solid #c5ccd6;
-    padding-bottom: 3px;
+.btn-discord{
+    background:#5865F2;
+    color:#fff;
 }
 
-.sidebar a {
-    display: block;
-    padding: 4px 6px;
-    text-decoration: none;
-    color: #000;
-    border: 1px solid transparent;
+.btn:hover{
+    transform:scale(1.07);
 }
 
-.sidebar a:hover {
-    background: #d0d7e2;
-    border: 1px solid #aab4c3;
+/* ===== SECTIONS ===== */
+section{
+    padding:80px 20px;
+    max-width:1200px;
+    margin:auto;
 }
 
-.sidebar a.active {
-    background: #c5d3e4;
-    border: 1px solid #7f9db9;
-    font-weight: bold;
+h2{
+    font-family:'Orbitron';
+    text-align:center;
+    margin-bottom:40px;
+    font-size:2.5rem;
 }
 
-/* ===== MAIN CONTENT ===== */
-.content {
-    flex: 1;
-    padding: 20px;
+/* ===== GRID ===== */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
 }
 
-.panel {
-    background: #f7f9fc;
-    border: 1px solid #9aa8b7;
-    margin-bottom: 20px;
+.feature{
+    background:#11162a;
+    padding:30px;
+    border-radius:15px;
+    border:1px solid #1f2745;
+    transition:.3s;
 }
 
-.panel-header {
-    background: linear-gradient(#e3e9f2, #cbd6e2);
-    padding: 6px 10px;
-    font-weight: bold;
-    border-bottom: 1px solid #9aa8b7;
+.feature:hover{
+    border-color:#00f5ff;
+    transform:translateY(-5px);
 }
 
-.panel-body {
-    padding: 15px;
+/* ===== SERVER STATUS CARD ===== */
+.status-wrapper{
+    display:flex;
+    justify-content:center;
+    margin-top:60px;
 }
 
-/* ===== BUTTONS ===== */
-.button {
-    display: inline-block;
-    padding: 6px 14px;
-    background: linear-gradient(#fefefe, #d6dbe3);
-    border: 1px solid #7f9db9;
-    text-decoration: none;
-    color: #000;
-    font-weight: bold;
-    font-size: 12px;
-    margin: 5px 0;
+.status-card{
+    width:320px;
+    background:#fff;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 0 25px rgba(0,0,0,.5);
+    animation:fade 1.5s ease;
 }
 
-.button:hover {
-    background: linear-gradient(#ffffff, #c5ccd6);
+.status-card img{
+    width:100%;
 }
 
-/* ===== STATUS BAR ===== */
-.statusbar {
-    background: linear-gradient(#2f567f, #1f3b59);
-    color: #fff;
-    padding: 6px 15px;
-    font-size: 12px;
-    display: flex;
-    justify-content: flex-end;
-    gap: 20px;
-    border-top: 1px solid #1a2f47;
+.status-body{
+    padding:20px;
+    color:#000d42;
 }
 
-.status-ok {
-    color: #7CFF7C;
-    font-weight: bold;
+.status-body h3{
+    margin-bottom:10px;
 }
 
-.dev-build {
-    font-family: "Courier New", monospace;
-    color: #990000;
-    margin-top: 15px;
-    font-size: 12px;
+/* ===== IP BOX ===== */
+.ip-box{
+    margin-top:30px;
+    text-align:center;
+    font-size:1.4rem;
+    background:#11162a;
+    padding:20px;
+    border-radius:10px;
+    border:1px solid #1f2745;
 }
+
+/* ===== GALLERY ===== */
+.gallery{
+    display:grid;
+    gap:15px;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+}
+
+.gallery img{
+    width:100%;
+    border-radius:12px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.gallery img:hover{
+    transform:scale(1.05);
+}
+
+/* ===== LIGHTBOX ===== */
+.lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.9);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+}
+
+.lightbox img{
+    max-width:90%;
+    max-height:90%;
+}
+
+/* ===== FOOTER ===== */
+footer{
+    text-align:center;
+    padding:40px;
+    opacity:.6;
+}
+
+@keyframes fade{
+    from{opacity:0;transform:translateY(20px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
 </style>
 </head>
-
 <body>
 
-<div class="topbar">
-    <div class="title">Integrated Lights-Out 3</div>
-    <div class="subtitle">ZX Spectrum ProLiant DL380 G7</div>
+<div class="hero">
+    <h1>ZX Spectrum Survival Network</h1>
+    <p>
+        Pure Survival. No cringe minigames. No vehicles.  
+        Just grind. Build. PvP. Survive.  
+        Running Minecraft 1.21.11 – supporting 1.8.9+
+    </p>
+
+    <button class="btn btn-primary" onclick="copyIP()">Copy IP</button>
+    <br><br>
+    <a href="https://discord.com/invite/5c2n8drRzc" target="_blank" class="btn btn-discord">Join Discord</a>
+
+    <div class="ip-box">
+        mc.zx-spectrum.online
+    </div>
 </div>
 
-<div class="container">
-
-    <!-- LEFT MENU -->
-    <div class="sidebar">
-        <h3>Information</h3>
-        <a href="#">Overview</a>
-        <a href="#">System Information</a>
-        <a href="#">Diagnostics</a>
-
-        <h3>Remote Console</h3>
-        <a href="#">Launch Console</a>
-
-        <h3>Administration</h3>
-        <a href="#" class="active">Server Links</a>
-        <a href="#">Licensing</a>
-        <a href="#">Network</a>
+<section>
+<h2>Game Modes</h2>
+<div class="grid">
+    <div class="feature">
+        <h3>🌍 Survival</h3>
+        <p>Hardcore economy, land claiming, PvP enabled.</p>
     </div>
+    <div class="feature">
+        <h3>🧊 Ice Boat Racing</h3>
+        <p>Fastest track. No brakes. Pure chaos.</p>
+    </div>
+    <div class="feature">
+        <h3>🌲 Survival</h3>
+        <p>Yes. Another survival. Because survival.</p>
+    </div>
+    <div class="feature">
+        <h3>🔥 Survival+</h3>
+        <p>Even more survival. Unlimited grind energy.</p>
+    </div>
+</div>
 
-    <!-- MAIN CONTENT -->
-    <div class="content">
-
-        <div class="panel">
-            <div class="panel-header">Server Links</div>
-            <div class="panel-body">
-                <p>Select a destination:</p>
-
-                <a class="button" href="http://server.zx-spectrum.online:5558/" target="_blank">
-                    Home Server
-                </a>
-                <br>
-                <a class="button" href="http://zx-spectrum.online/zx-spectrum" target="_blank">
-                    Minecraft Server Site
-                </a>
-
-                <div class="dev-build">
-                    Dev Build: 0.9.7-beta
-                </div>
-            </div>
+<div class="status-wrapper">
+    <div class="status-card">
+        <img src="https://www.techadvisor.com/wp-content/uploads/2022/06/zx-spectrum-why-most-important-computer-in-history.jpg?resize=1024%2C575">
+        <div class="status-body">
+            <h3>Server Status</h3>
+            <div id="status">Loading...</div>
         </div>
-
     </div>
-
 </div>
 
-<div class="statusbar">
-    <div>POWER: <span class="status-ok">ON</span></div>
-    <div>UID: OFF</div>
+</section>
+
+<section>
+<h2>Gallery</h2>
+<div class="gallery">
+<img src="https://i.postimg.cc/nrNg8VfZ/image.webp">
+<img src="https://i.postimg.cc/2jtPLGb1/image.webp">
+<img src="https://i.postimg.cc/9XkvwbRG/image.webp">
+<img src="https://i.postimg.cc/J7F9HxD3/image.webp">
+<img src="https://i.postimg.cc/h4YHQszs/image.webp">
+<img src="https://i.postimg.cc/hvX63zwt/image.webp">
+<img src="https://i.postimg.cc/Gt6V03wv/image.webp">
+<img src="https://i.postimg.cc/6qFgs6Jd/image.webp">
+<img src="https://i.postimg.cc/Vv2pysQW/image.webp">
 </div>
+</section>
+
+<footer>
+© 2026 ZX Spectrum Survival Network  
+1.21.11 • Supports 1.8.9+ • Self Hosted Beast Mode
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="this.style.display='none'">
+<img id="lightbox-img">
+</div>
+
+<script>
+function copyIP(){
+    const ip="mc.zx-spectrum.online";
+    navigator.clipboard.writeText(ip);
+    alert("IP Copied ➜ "+ip);
+}
+
+document.querySelectorAll(".gallery img").forEach(img=>{
+    img.onclick=()=>{
+        document.getElementById("lightbox-img").src=img.src;
+        document.getElementById("lightbox").style.display="flex";
+    }
+});
+
+fetch("https://api.minetools.eu/ping/mc.zx-spectrum.online")
+.then(res=>res.json())
+.then(data=>{
+    if(data.error){
+        document.getElementById("status").innerHTML="Server Offline 😢";
+        return;
+    }
+    document.getElementById("status").innerHTML=
+        "Players Online: "+data.players.online+
+        "<br>MOTD: "+data.description.replace(/§(.+?)/gi,'');
+});
+</script>
 
 </body>
 </html>
