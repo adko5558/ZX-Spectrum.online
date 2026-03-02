@@ -4,67 +4,65 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ZX Spectrum!</title>
+<title>ZX Spectrum! Minecraft Server | Survival 1.21.11</title>
 
-<meta name="description" content="ZX Spectrum! Minecraft Server running 1.21.11 with support for 1.8.9+. Join now at mc.zx-spectrum.online">
-<meta name="keywords" content="Minecraft server, Minecraft 1.21 server, survival server, ZX Spectrum Minecraft">
+<meta name="description" content="ZX Spectrum! Minecraft Server is a survival server running 1.21.11 with support for 1.8.9+. PvP enabled, Ice Boat Racing, stable hosting and active community. Join today at mc.zx-spectrum.online">
+
+<meta name="keywords" content="Minecraft server, survival server, Minecraft 1.21.11 server, PvP server, ZX Spectrum Minecraft server">
+
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://zx-spectrum.online/">
 
-<!-- Favicon -->
 <link rel="icon" type="image/jpeg" href="https://www.techadvisor.com/wp-content/uploads/2022/06/zx-spectrum-why-most-important-computer-in-history.jpg">
 
 <!-- Open Graph -->
 <meta property="og:title" content="ZX Spectrum! Minecraft Server">
-<meta property="og:description" content="Join ZX Spectrum! Minecraft Server running 1.21.11">
+<meta property="og:description" content="Survival Minecraft Server running 1.21.11. PvP enabled, Ice Boat Racing and stable hosting.">
 <meta property="og:image" content="https://www.techadvisor.com/wp-content/uploads/2022/06/zx-spectrum-why-most-important-computer-in-history.jpg">
 <meta property="og:url" content="https://zx-spectrum.online/">
 <meta property="og:type" content="website">
 
-<!-- Twitter Card (funguje aj bez účtu) -->
+<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ZX Spectrum! Minecraft Server">
-<meta name="twitter:description" content="Join ZX Spectrum! Minecraft Server">
+<meta name="twitter:description" content="Survival Minecraft Server 1.21.11">
 <meta name="twitter:image" content="https://www.techadvisor.com/wp-content/uploads/2022/06/zx-spectrum-why-most-important-computer-in-history.jpg">
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
     font-family:'Inter',sans-serif;
-    background:linear-gradient(135deg,#0f172a,#020617);
-    color:#fff;
-    overflow-x:hidden;
+    background:#0f172a;
+    color:#e2e8f0;
 }
 
 section{
-    padding:100px 20px;
-    max-width:1200px;
+    padding:90px 20px;
+    max-width:1100px;
     margin:auto;
 }
 
 h1,h2,h3{
     font-family:'Orbitron',sans-serif;
+    color:#fff;
 }
 
 h1{
-    font-size:3.5rem;
-    background:linear-gradient(90deg,#00f5ff,#ff00c8);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+    font-size:3rem;
 }
 
 h2{
     text-align:center;
     margin-bottom:50px;
-    font-size:2.5rem;
+    font-size:2.2rem;
 }
 
 p{
-    opacity:.85;
-    line-height:1.7;
+    line-height:1.8;
+    color:#cbd5e1;
 }
 
 .hero{
@@ -78,83 +76,82 @@ p{
 }
 
 .hero p{
-    max-width:700px;
-    margin:30px 0;
+    max-width:750px;
+    margin:25px 0;
 }
 
 .btn{
-    padding:15px 35px;
-    border-radius:12px;
+    padding:14px 32px;
+    border-radius:10px;
     text-decoration:none;
-    font-weight:700;
-    margin:10px;
+    font-weight:600;
     display:inline-flex;
     align-items:center;
     gap:10px;
-    transition:.3s;
+    transition:.25s;
 }
 
 .btn-discord{
-    background:#5865F2;
+    background:#2d3748;
     color:#fff;
 }
 
-.btn-email{
-    background:linear-gradient(90deg,#00f5ff,#ff00c8);
-    color:#000;
-}
-
-.btn:hover{
-    transform:translateY(-4px);
-    box-shadow:0 15px 30px rgba(0,0,0,.4);
+.btn-discord:hover{
+    background:#4a5568;
 }
 
 .ip-box{
-    margin-top:40px;
-    font-size:1.4rem;
-    background:#0f172a;
-    padding:20px 40px;
-    border-radius:12px;
-    border:1px solid #1e293b;
+    margin-top:35px;
+    font-size:1.3rem;
+    background:#1e293b;
+    padding:18px 30px;
+    border-radius:10px;
+    border:1px solid #334155;
     display:flex;
     align-items:center;
-    gap:15px;
+    gap:12px;
 }
 
 .copy-icon{
-    width:24px;
-    height:24px;
+    width:22px;
     cursor:pointer;
-    transition:.2s;
+    opacity:.8;
 }
 
 .copy-icon:hover{
-    transform:scale(1.2);
+    opacity:1;
 }
 
 .grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:30px;
+    gap:25px;
 }
 
 .feature{
-    padding:30px;
-    border-radius:20px;
-    background:rgba(255,255,255,.05);
-    transition:.3s;
+    background:#1e293b;
+    padding:28px;
+    border-radius:14px;
+    border:1px solid #334155;
+    transition:.25s;
 }
 
 .feature:hover{
-    transform:translateY(-6px);
-    border:1px solid #00f5ff;
+    border-color:#64748b;
+    transform:translateY(-4px);
+}
+
+.trailer-wrapper{
+    display:flex;
+    justify-content:center;
 }
 
 footer{
     text-align:center;
-    padding:60px 20px;
-    opacity:.6;
-    border-top:1px solid rgba(255,255,255,.1);
+    padding:50px 20px;
+    border-top:1px solid #1e293b;
+    font-size:.9rem;
+    color:#94a3b8;
 }
 </style>
 
@@ -165,13 +162,14 @@ footer{
 <h1>ZX Spectrum!</h1>
 
 <p>
-Official ZX Spectrum! Minecraft Server running version 1.21.11 
-with support for 1.8.9+. Clean survival experience focused on gameplay, 
-community and performance.
+ZX Spectrum! is a Minecraft survival server running version 1.21.11 
+with support for clients 1.8.9 and newer. The server focuses on smooth 
+gameplay, balanced PvP combat and a stable survival experience. 
+No unnecessary features — just clean survival gameplay with a strong community.
 </p>
 
 <a href="https://discord.com/invite/5c2n8drRzc" target="_blank" class="btn btn-discord">
-<img src="https://pngimg.com/d/discord_PNG3.png" width="20">
+<img src="https://pngimg.com/d/discord_PNG3.png" width="18">
 Join Discord
 </a>
 
@@ -179,35 +177,57 @@ Join Discord
 <span>mc.zx-spectrum.online</span>
 <img src="https://static.thenounproject.com/png/361082-200.png" class="copy-icon" onclick="copyIP()" title="Copy IP">
 </div>
-
 </div>
 
 <section>
-<h2>Game Features</h2>
+<h2>About The Server</h2>
+
+<p>
+ZX Spectrum! Minecraft Server delivers a consistent survival experience 
+with optimized performance and reliable uptime. The world is designed 
+for long-term progression, building and competitive interaction between players.
+</p>
+
+<br>
+
+<p>
+Players can explore, build large bases, participate in PvP encounters 
+and enjoy custom Ice Boat Racing tracks. The server hardware is optimized 
+to ensure minimal lag and stable performance even during peak hours.
+</p>
+
+</section>
+
+<section>
+<h2>Features</h2>
+
 <div class="grid">
 <div class="feature">
-<h3>🌍 Survival</h3>
-<p>Balanced survival world with smooth performance and active moderation.</p>
+<h3>Survival World</h3>
+<p>Clean survival gameplay focused on progression and building.</p>
 </div>
+
 <div class="feature">
-<h3>⚔ PvP Enabled</h3>
-<p>Competitive combat experience with optimized server performance.</p>
+<h3>PvP Enabled</h3>
+<p>Balanced combat system with optimized server performance.</p>
 </div>
+
 <div class="feature">
-<h3>🧊 Ice Boat Racing</h3>
-<p>Fast-paced ice boat tracks built for fun and competition.</p>
+<h3>Ice Boat Racing</h3>
+<p>Fast competitive tracks designed for skilled players.</p>
 </div>
+
 <div class="feature">
-<h3>🖥 Stable Hosting</h3>
-<p>Reliable uptime and powerful hardware ensuring smooth gameplay.</p>
+<h3>Stable Hosting</h3>
+<p>Reliable infrastructure ensuring consistent uptime and smooth gameplay.</p>
 </div>
 </div>
 </section>
 
 <section>
 <h2>Server Trailer</h2>
-<div style="display:flex;justify-content:center;">
-<iframe width="630" height="1120"
+<div class="trailer-wrapper">
+<iframe width="400" height="710"
 src="https://www.youtube.com/embed/_WcpJCEViX8"
 title="ZX Spectrum Minecraft Server Trailer"
 frameborder="0"
@@ -216,25 +236,9 @@ allowfullscreen>
 </div>
 </section>
 
-<section>
-<h2>Join Our Community</h2>
-<div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;">
-
-<a href="https://discord.com/invite/5c2n8drRzc" target="_blank" class="btn btn-discord">
-<img src="https://pngimg.com/d/discord_PNG3.png" width="20">
-Discord
-</a>
-
-<a href="mailto:support@zx-spectrum.online" class="btn btn-email">
-📬 support@zx-spectrum.online
-</a>
-
-</div>
-</section>
-
 <footer>
 © 2026 ZX Spectrum! Minecraft Server<br>
-All Rights Reserved
+mc.zx-spectrum.online
 </footer>
 
 <script>
