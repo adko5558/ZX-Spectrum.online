@@ -39,6 +39,64 @@ body{
     color:#e2e8f0;
 }
 
+/* NAVIGATION */
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:#0f172a;
+    border-bottom:1px solid #1e293b;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 40px;
+    z-index:1000;
+}
+
+.logo{
+    font-family:'Orbitron',sans-serif;
+    font-size:1.2rem;
+    color:#fff;
+    text-decoration:none;
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#cbd5e1;
+    font-weight:500;
+    position:relative;
+    transition:.2s;
+}
+
+.nav-links a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:0%;
+    height:2px;
+    background:#64748b;
+    transition:.2s;
+}
+
+.nav-links a:hover{
+    color:#fff;
+}
+
+.nav-links a:hover::after{
+    width:100%;
+}
+
+/* CONTENT OFFSET FOR FIXED NAV */
+body{
+    padding-top:90px;
+}
+
 section{
     padding:90px 20px;
     max-width:1100px;
@@ -66,13 +124,12 @@ p{
 }
 
 .hero{
-    min-height:100vh;
+    min-height:90vh;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     text-align:center;
-    padding:40px 20px;
 }
 
 .hero p{
@@ -158,19 +215,30 @@ footer{
 </head>
 <body>
 
+<nav>
+<a href="./" class="logo">ZX Spectrum!</a>
+
+<div class="nav-links">
+<a href="./about">About our Server</a>
+<a href="./faq">FAQ</a>
+<a href="./contact">Contact Us</a>
+<a href="./shop">Shop</a>
+</div>
+</nav>
+
 <div class="hero">
-<h1>ZX Spectrum!</h1>
+<h1>ZX Spectrum! 🎮</h1>
 
 <p>
 ZX Spectrum! is a Minecraft survival server running version 1.21.11 
-with support for clients 1.8.9 and newer. The server focuses on smooth 
-gameplay, balanced PvP combat and a stable survival experience. 
-No unnecessary features — just clean survival gameplay with a strong community.
+with support for clients 1.8.9 and newer. ⚔  
+Enjoy smooth performance, balanced PvP combat and a clean survival experience 
+focused on gameplay and community. 🌍
 </p>
 
 <a href="https://discord.com/invite/5c2n8drRzc" target="_blank" class="btn btn-discord">
 <img src="https://pngimg.com/d/discord_PNG3.png" width="18">
-Join Discord
+Join Discord 💬
 </a>
 
 <div class="ip-box">
@@ -180,52 +248,53 @@ Join Discord
 </div>
 
 <section>
-<h2>About The Server</h2>
+<h2>About The Server 🚀</h2>
 
 <p>
-ZX Spectrum! Minecraft Server delivers a consistent survival experience 
-with optimized performance and reliable uptime. The world is designed 
-for long-term progression, building and competitive interaction between players.
+ZX Spectrum! Minecraft Server delivers a stable and optimized survival world 
+designed for long-term progression, base building and competitive interaction. 🏗  
+Players can explore vast terrain, build impressive structures and engage in PvP encounters.
 </p>
 
 <br>
 
 <p>
-Players can explore, build large bases, participate in PvP encounters 
-and enjoy custom Ice Boat Racing tracks. The server hardware is optimized 
-to ensure minimal lag and stable performance even during peak hours.
+The server infrastructure is tuned for minimal lag and consistent uptime, 
+ensuring a smooth gameplay experience during both peak and off-peak hours. ⚡  
+Ice Boat Racing tracks add a fast-paced competitive activity for players who 
+enjoy skill-based challenges. 🧊
 </p>
 
 </section>
 
 <section>
-<h2>Features</h2>
+<h2>Features ✨</h2>
 
 <div class="grid">
 <div class="feature">
-<h3>Survival World</h3>
-<p>Clean survival gameplay focused on progression and building.</p>
+<h3>🌍 Survival World</h3>
+<p>Progression-focused survival gameplay with long-term world stability.</p>
 </div>
 
 <div class="feature">
-<h3>PvP Enabled</h3>
-<p>Balanced combat system with optimized server performance.</p>
+<h3>⚔ PvP Enabled</h3>
+<p>Competitive combat experience with optimized server performance.</p>
 </div>
 
 <div class="feature">
-<h3>Ice Boat Racing</h3>
-<p>Fast competitive tracks designed for skilled players.</p>
+<h3>🧊 Ice Boat Racing</h3>
+<p>Skill-based racing tracks designed for fast reaction gameplay.</p>
 </div>
 
 <div class="feature">
-<h3>Stable Hosting</h3>
-<p>Reliable infrastructure ensuring consistent uptime and smooth gameplay.</p>
+<h3>🖥 Stable Hosting</h3>
+<p>Reliable hardware and infrastructure ensuring consistent uptime.</p>
 </div>
 </div>
 </section>
 
 <section>
-<h2>Server Trailer</h2>
+<h2>Server Trailer 🎬</h2>
 <div class="trailer-wrapper">
 <iframe width="400" height="710"
 src="https://www.youtube.com/embed/_WcpJCEViX8"
@@ -237,7 +306,7 @@ allowfullscreen>
 </section>
 
 <footer>
-© 2026 ZX Spectrum! Minecraft Server<br>
+© 2026 ZX Spectrum! Minecraft Server 🎮<br>
 mc.zx-spectrum.online
 </footer>
 
