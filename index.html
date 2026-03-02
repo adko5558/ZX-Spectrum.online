@@ -4,30 +4,34 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ZX Spectrum Survival Network | Hardcore Minecraft Survival Server 1.21.11</title>
+<title>ZX Spectrum!</title>
 
-<meta name="description" content="ZX Spectrum Survival Network je hardcore Minecraft survival server (1.21.11, podporuje 1.8.9+). PvP, economy, land claim, Ice Boat Racing. Join now: mc.zx-spectrum.online">
-<meta name="keywords" content="Minecraft server, survival server, Minecraft 1.21 server, PvP server, economy survival, Ice Boat Racing Minecraft">
+<meta name="description" content="ZX Spectrum! Minecraft Server running 1.21.11 with support for 1.8.9+. Join now at mc.zx-spectrum.online">
+<meta name="keywords" content="Minecraft server, Minecraft 1.21 server, survival server, ZX Spectrum Minecraft">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://zx-spectrum.online/">
 
+<!-- Favicon -->
+<link rel="icon" type="image/jpeg" href="https://www.techadvisor.com/wp-content/uploads/2022/06/zx-spectrum-why-most-important-computer-in-history.jpg">
+
 <!-- Open Graph -->
-<meta property="og:title" content="ZX Spectrum Survival Network - Hardcore Minecraft Survival">
-<meta property="og:description" content="Pure Survival. Grind. Build. PvP. Survive.">
+<meta property="og:title" content="ZX Spectrum! Minecraft Server">
+<meta property="og:description" content="Join ZX Spectrum! Minecraft Server running 1.21.11">
 <meta property="og:image" content="https://www.techadvisor.com/wp-content/uploads/2022/06/zx-spectrum-why-most-important-computer-in-history.jpg">
 <meta property="og:url" content="https://zx-spectrum.online/">
 <meta property="og:type" content="website">
 
-<!-- Twitter -->
+<!-- Twitter Card (funguje aj bez účtu) -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ZX Spectrum Survival Network">
-<meta name="twitter:description" content="Hardcore Minecraft Survival Server 1.21.11">
+<meta name="twitter:title" content="ZX Spectrum! Minecraft Server">
+<meta name="twitter:description" content="Join ZX Spectrum! Minecraft Server">
 <meta name="twitter:image" content="https://www.techadvisor.com/wp-content/uploads/2022/06/zx-spectrum-why-most-important-computer-in-history.jpg">
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+
 body{
     font-family:'Inter',sans-serif;
     background:linear-gradient(135deg,#0f172a,#020617);
@@ -43,7 +47,6 @@ section{
 
 h1,h2,h3{
     font-family:'Orbitron',sans-serif;
-    letter-spacing:1px;
 }
 
 h1{
@@ -85,13 +88,10 @@ p{
     text-decoration:none;
     font-weight:700;
     margin:10px;
-    display:inline-block;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
     transition:.3s;
-}
-
-.btn-primary{
-    background:linear-gradient(90deg,#00f5ff,#ff00c8);
-    color:#000;
 }
 
 .btn-discord{
@@ -99,17 +99,37 @@ p{
     color:#fff;
 }
 
+.btn-email{
+    background:linear-gradient(90deg,#00f5ff,#ff00c8);
+    color:#000;
+}
+
 .btn:hover{
     transform:translateY(-4px);
     box-shadow:0 15px 30px rgba(0,0,0,.4);
 }
 
-.glass{
-    background:rgba(255,255,255,.05);
-    backdrop-filter:blur(12px);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:20px;
-    padding:40px;
+.ip-box{
+    margin-top:40px;
+    font-size:1.4rem;
+    background:#0f172a;
+    padding:20px 40px;
+    border-radius:12px;
+    border:1px solid #1e293b;
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.copy-icon{
+    width:24px;
+    height:24px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.copy-icon:hover{
+    transform:scale(1.2);
 }
 
 .grid{
@@ -130,87 +150,56 @@ p{
     border:1px solid #00f5ff;
 }
 
-.ip-box{
-    margin-top:40px;
-    font-size:1.4rem;
-    background:#0f172a;
-    padding:20px 40px;
-    border-radius:12px;
-    border:1px solid #1e293b;
-}
-
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:20px;
-}
-
-.gallery img{
-    width:100%;
-    border-radius:15px;
-    transition:.3s;
-}
-
-.gallery img:hover{
-    transform:scale(1.05);
-}
-
 footer{
     text-align:center;
     padding:60px 20px;
     opacity:.6;
+    border-top:1px solid rgba(255,255,255,.1);
 }
 </style>
-
-<!-- Structured Data -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "GameServer",
-  "name": "ZX Spectrum Survival Network",
-  "game": "Minecraft",
-  "url": "https://zx-spectrum.online",
-  "description": "Hardcore Minecraft survival server with PvP, economy and Ice Boat Racing.",
-  "serverStatus": "Online"
-}
-</script>
 
 </head>
 <body>
 
 <div class="hero">
-<h1>ZX Spectrum Survival Network</h1>
+<h1>ZX Spectrum!</h1>
+
 <p>
-Hardcore Minecraft Survival Server running 1.21.11 with support for 1.8.9+. 
-Pure survival experience focused on PvP, economy, land claiming and competitive gameplay.
+Official ZX Spectrum! Minecraft Server running version 1.21.11 
+with support for 1.8.9+. Clean survival experience focused on gameplay, 
+community and performance.
 </p>
 
-<a href="#" class="btn btn-primary" onclick="copyIP()">Copy IP</a>
-<a href="https://discord.com/invite/5c2n8drRzc" target="_blank" class="btn btn-discord">Join Discord</a>
+<a href="https://discord.com/invite/5c2n8drRzc" target="_blank" class="btn btn-discord">
+<img src="https://pngimg.com/d/discord_PNG3.png" width="20">
+Join Discord
+</a>
 
 <div class="ip-box">
-mc.zx-spectrum.online
+<span>mc.zx-spectrum.online</span>
+<img src="https://static.thenounproject.com/png/361082-200.png" class="copy-icon" onclick="copyIP()" title="Copy IP">
 </div>
+
 </div>
 
 <section>
-<h2>Game Modes</h2>
+<h2>Game Features</h2>
 <div class="grid">
 <div class="feature">
 <h3>🌍 Survival</h3>
-<p>Advanced economy system, land claiming, PvP enabled world and competitive gameplay.</p>
+<p>Balanced survival world with smooth performance and active moderation.</p>
+</div>
+<div class="feature">
+<h3>⚔ PvP Enabled</h3>
+<p>Competitive combat experience with optimized server performance.</p>
 </div>
 <div class="feature">
 <h3>🧊 Ice Boat Racing</h3>
-<p>High-speed competitive tracks built for skilled players.</p>
+<p>Fast-paced ice boat tracks built for fun and competition.</p>
 </div>
 <div class="feature">
-<h3>⚔ Competitive PvP</h3>
-<p>Balanced combat, optimized performance and minimal lag.</p>
-</div>
-<div class="feature">
-<h3>💰 Player Economy</h3>
-<p>Trade, build shops and dominate the market.</p>
+<h3>🖥 Stable Hosting</h3>
+<p>Reliable uptime and powerful hardware ensuring smooth gameplay.</p>
 </div>
 </div>
 </section>
@@ -218,9 +207,9 @@ mc.zx-spectrum.online
 <section>
 <h2>Server Trailer</h2>
 <div style="display:flex;justify-content:center;">
-<iframe width="315" height="560"
+<iframe width="630" height="1120"
 src="https://www.youtube.com/embed/_WcpJCEViX8"
-title="ZX Spectrum Survival Trailer"
+title="ZX Spectrum Minecraft Server Trailer"
 frameborder="0"
 allowfullscreen>
 </iframe>
@@ -228,47 +217,24 @@ allowfullscreen>
 </section>
 
 <section>
-<h2>Gallery</h2>
-<div class="gallery">
-<img src="https://i.postimg.cc/nrNg8VfZ/image.webp" alt="Minecraft survival server gameplay">
-<img src="https://i.postimg.cc/2jtPLGb1/image.webp" alt="Minecraft PvP server arena">
-<img src="https://i.postimg.cc/9XkvwbRG/image.webp" alt="Minecraft Ice Boat Racing track">
-<img src="https://i.postimg.cc/J7F9HxD3/image.webp" alt="Minecraft survival base build">
-</div>
-</section>
-
-<section>
 <h2>Join Our Community</h2>
-<div class="grid">
+<div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;">
 
-<div class="glass">
-<h3>Discord</h3>
-<p>Join our active community, participate in events and stay updated.</p>
-<a href="https://discord.com/invite/5c2n8drRzc" target="_blank" class="btn btn-discord">Open Discord</a>
-</div>
+<a href="https://discord.com/invite/5c2n8drRzc" target="_blank" class="btn btn-discord">
+<img src="https://pngimg.com/d/discord_PNG3.png" width="20">
+Discord
+</a>
 
-<div class="glass">
-<h3>Twitter / X</h3>
-<p>Follow updates, announcements and server news.</p>
-<a href="#" class="btn btn-primary">Follow</a>
-</div>
+<a href="mailto:support@zx-spectrum.online" class="btn btn-email">
+📬 support@zx-spectrum.online
+</a>
 
-</div>
-</section>
-
-<section>
-<h2>FAQ</h2>
-<div class="glass">
-<p><strong>What version is supported?</strong><br>Server runs 1.21.11 and supports clients 1.8.9+</p>
-<br>
-<p><strong>Is PvP enabled?</strong><br>Yes, PvP is enabled in survival world.</p>
-<br>
-<p><strong>Is the server pay-to-win?</strong><br>No pay-to-win mechanics.</p>
 </div>
 </section>
 
 <footer>
-© 2026 ZX Spectrum Survival Network • Minecraft Survival Server • All Rights Reserved
+© 2026 ZX Spectrum! Minecraft Server<br>
+All Rights Reserved
 </footer>
 
 <script>
