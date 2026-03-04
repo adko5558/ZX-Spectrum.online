@@ -3,28 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>ZX Spectrum! Minecraft Server | Survival 1.21.11</title>
-
-<meta name="description" content="ZX Spectrum! Minecraft Server is a survival server running 1.21.11 with support for 1.8.9+. PvP enabled, Ice Boat Racing, stable hosting and active community. Join today at mc.zx-spectrum.online">
-
-<meta name="keywords" content="Minecraft server, survival server, Minecraft 1.21.11 server, PvP server, ZX Spectrum Minecraft server">
-
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://zx-spectrum.online/">
-
-<link rel="icon" type="image/jpeg" href="https://www.techadvisor.com/wp-content/uploads/2022/06/zx-spectrum-why-most-important-computer-in-history.jpg">
-
-<meta property="og:title" content="ZX Spectrum! Minecraft Server">
-<meta property="og:description" content="Survival Minecraft Server running 1.21.11. PvP enabled, Ice Boat Racing and stable hosting.">
-<meta property="og:image" content="https://www.techadvisor.com/wp-content/uploads/2022/06/zx-spectrum-why-most-important-computer-in-history.jpg">
-<meta property="og:url" content="https://zx-spectrum.online/">
-<meta property="og:type" content="website">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ZX Spectrum! Minecraft Server">
-<meta name="twitter:description" content="Survival Minecraft Server 1.21.11">
-<meta name="twitter:image" content="https://www.techadvisor.com/wp-content/uploads/2022/06/zx-spectrum-why-most-important-computer-in-history.jpg">
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -38,25 +17,28 @@ body{
     overflow-x: hidden;
 }
 
-/* SPLASHSCREEN / HERO IMAGE */
-.splash {
-    position: relative;
-    width: 100%;
-    height: 100vh; /* Na celú obrazovku */
-    background-image: url('https://i.postimg.cc/hj3p70qW/obrazok.png');
-    background-size: cover;
-    background-position: center;
-    filter: blur(3px); /* Maalicko rozmazany */
-    transform: scale(1.05); /* Natiahnuty kvoli blur okrajom */
-    z-index: -1;
+/* CUSTOM NOTIFICATION BOX */
+#copy-msg {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    background: rgba(255, 69, 0, 0.9);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-family: 'Orbitron', sans-serif;
+    box-shadow: 0 0 20px rgba(255, 69, 0, 0.5);
+    opacity: 0;
+    transition: 0.3s;
+    z-index: 2000;
+    pointer-events: none;
 }
 
-/* Na mobile zrušíme fixnú výšku ak by to zavadzalo, ale podľa tvojho priania nechávame flexibilné */
-@media (max-width: 768px) {
-    .splash {
-        filter: blur(2px);
-        transform: scale(1);
-    }
+#copy-msg.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
 }
 
 /* NAVIGATION */
@@ -64,45 +46,65 @@ nav{
     position:fixed;
     top:0;
     width:100%;
-    background: rgba(15, 23, 42, 0.8);
-    backdrop-filter: blur(10px);
-    border-bottom:1px solid #1e293b;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:18px 40px;
+    padding:12px 40px;
     z-index:1000;
 }
 
-.logo{
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.logo-container:hover {
+    transform: scale(1.05);
+}
+
+.logo-img {
+    height: 40px; /* O trochu vacsi ako text */
+    border-radius: 5px;
+}
+
+.logo-text {
     font-family:'Orbitron',sans-serif;
     font-size:1.2rem;
     color:#fff;
-    text-decoration:none;
 }
 
 .nav-links{
     display:flex;
-    gap:30px;
+    gap:25px;
     align-items: center;
 }
 
-.nav-links a{
+/* OSTATNE TLACIDLA HOVER */
+.nav-links a:not(.shop-btn) {
     text-decoration:none;
     color:#cbd5e1;
     font-weight:500;
-    position:relative;
-    transition:.2s;
+    padding: 8px 15px;
+    border-radius: 6px;
+    transition: 0.3s;
 }
 
-.nav-links a:hover{
-    color:#fff;
+.nav-links a:not(.shop-btn):hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
 }
 
-/* SPECIAL SHOP BUTTON */
+/* SHOP BUTTON TURBO ANIMATION */
 .shop-btn {
     position: relative;
-    padding: 8px 20px;
+    padding: 10px 24px;
     background: #0f172a;
     border-radius: 8px;
     color: #fff !important;
@@ -110,6 +112,7 @@ nav{
     z-index: 1;
     display: inline-block;
     overflow: hidden;
+    transition: 0.3s;
 }
 
 .shop-btn::before {
@@ -120,16 +123,25 @@ nav{
     width: 200%;
     height: 200%;
     background: conic-gradient(from 0deg, #ff4500, #ff8c00, #ffd700, #ff4500);
-    animation: rotate 4s linear infinite;
+    animation: rotate 6s linear infinite;
     z-index: -2;
+}
+
+.shop-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 140, 0, 0.6);
+}
+
+.shop-btn:hover::before {
+    animation-duration: 1.5s; /* Zrychlenie animacie */
 }
 
 .shop-btn::after {
     content: '';
     position: absolute;
-    inset: 2px;
+    inset: 3px;
     background: #0f172a;
-    border-radius: 6px;
+    border-radius: 5px;
     z-index: -1;
 }
 
@@ -138,232 +150,220 @@ nav{
     to { transform: rotate(360deg); }
 }
 
-/* CONTENT CONTAINER */
+/* SPLASH & LIQUID GLASS EFFECT */
+.splash {
+    position: fixed; /* Fix kvoli scrollu */
+    top:0; left:0;
+    width: 100%;
+    height: 100vh;
+    background-image: url('https://i.postimg.cc/hj3p70qW/obrazok.png');
+    background-size: cover;
+    background-position: center;
+    filter: blur(4px);
+    transform: scale(1.1);
+    z-index: -2;
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 5;
+}
+
+.liquid-glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 60px;
+    border-radius: 30px;
+    text-align: center;
+    max-width: 850px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 15px rgba(255, 69, 0, 0.8);
+}
+
+.hero p {
+    color: #f1f5f9;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.btn-discord {
+    background: #5865F2;
+    color: white;
+    padding: 14px 32px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+
+.btn-discord:hover {
+    background: #4752c4;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(88, 101, 242, 0.4);
+}
+
+.ip-box {
+    margin-top: 30px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid #ff4500;
+    padding: 15px 30px;
+    border-radius: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.ip-box:hover {
+    background: rgba(255, 69, 0, 0.1);
+    transform: scale(1.02);
+}
+
+.copy-icon {
+    width: 22px;
+    filter: invert(1);
+    opacity: 0.7;
+}
+
+/* MAIN CONTENT */
 .main-wrapper {
     position: relative;
     background: #0f172a;
     z-index: 10;
-    margin-top: 0; /* Začína hneď po splashscreene */
+    box-shadow: 0 -20px 50px rgba(0,0,0,0.8);
 }
 
-section{
-    padding:90px 20px;
-    max-width:1100px;
-    margin:auto;
+section {
+    padding: 100px 20px;
+    max-width: 1100px;
+    margin: auto;
 }
 
-h1,h2,h3{
-    font-family:'Orbitron',sans-serif;
-    color:#fff;
+h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 50px;
 }
 
-h1{
-    font-size:3.5rem;
-    text-shadow: 0 0 20px rgba(255, 69, 0, 0.6);
+.feature {
+    background: #1e293b;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #334155;
+    transition: 0.3s;
 }
 
-h2{
-    text-align:center;
-    margin-bottom:50px;
-    font-size:2.2rem;
+.feature:hover {
+    border-color: #ff4500;
+    transform: translateY(-5px);
 }
 
-p{
-    line-height:1.8;
-    color:#cbd5e1;
+footer {
+    text-align: center;
+    padding: 60px;
+    background: #020617;
+    color: #64748b;
 }
 
-.hero{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    z-index: 5;
-    background: rgba(0,0,0,0.2);
-}
-
-.hero p{
-    max-width:750px;
-    margin:25px 0;
-    font-weight: 500;
-    text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
-}
-
-.btn{
-    padding:14px 32px;
-    border-radius:10px;
-    text-decoration:none;
-    font-weight:600;
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    transition:.25s;
-}
-
-.btn-discord{
-    background:#5865F2;
-    color:#fff;
-}
-
-.btn-discord:hover{
-    background:#4752c4;
-    transform: scale(1.05);
-}
-
-.ip-box{
-    margin-top:35px;
-    font-size:1.3rem;
-    background: rgba(30, 41, 59, 0.9);
-    padding:18px 30px;
-    border-radius:10px;
-    border:1px solid #ff4500;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    box-shadow: 0 0 15px rgba(255, 69, 0, 0.3);
-}
-
-.copy-icon{
-    width:22px;
-    cursor:pointer;
-    opacity:.8;
-    filter: invert(1);
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:25px;
-}
-
-.feature{
-    background:#1e293b;
-    padding:28px;
-    border-radius:14px;
-    border:1px solid #334155;
-    transition:.25s;
-}
-
-.feature:hover{
-    border-color:#ff8c00;
-    transform:translateY(-4px);
-}
-
-.trailer-wrapper{
-    display:flex;
-    justify-content:center;
-}
-
-footer{
-    text-align:center;
-    padding:50px 20px;
-    border-top:1px solid #1e293b;
-    font-size:.9rem;
-    color:#94a3b8;
-}
 </style>
-
 </head>
 <body>
 
-<nav>
-<a href="./" class="logo">ZX Spectrum!</a>
+<div id="copy-msg">IP Copied! 📋</div>
 
-<div class="nav-links">
-<a href="./about">About</a>
-<a href="./faq">FAQ</a>
-<a href="./contact">Contact</a>
-<a href="//shop.zx-spectrum.online/" class="shop-btn">Shop</a>
-</div>
+<nav>
+    <a href="./" class="logo-container">
+        <img src="https://www.techadvisor.com/wp-content/uploads/2022/06/zx-spectrum-why-most-important-computer-in-history.jpg" alt="Logo" class="logo-img">
+        <span class="logo-text">ZX Spectrum!</span>
+    </a>
+
+    <div class="nav-links">
+        <a href="./about">About</a>
+        <a href="./faq">FAQ</a>
+        <a href="./contact">Contact</a>
+        <a href="//shop.zx-spectrum.online/" class="shop-btn">Shop</a>
+    </div>
 </nav>
 
 <div class="splash"></div>
 
 <div class="hero">
-<h1>ZX Spectrum! 🎮</h1>
-<p>
-Survival server running 1.21.11 on enterprise HP hardware. <br>
-Experience the true power of dedicated performance in Bratislava.
-</p>
+    <div class="liquid-glass">
+        <h1>ZX Spectrum! 🎮</h1>
+        <p>
+            The ultimate survival experience on 1.21.1.<br>
+            Powered by HP ProLiant G7 enterprise hardware.
+        </p>
 
-<a href="https://discord.com/invite/5c2n8drRzc" target="_blank" class="btn btn-discord">
-<img src="https://pngimg.com/d/discord_PNG3.png" width="18" style="filter: brightness(0) invert(1);">
-Join Discord 💬
-</a>
+        <a href="https://discord.com/invite/5c2n8drRzc" target="_blank" class="btn-discord">
+            <img src="https://pngimg.com/d/discord_PNG3.png" width="20" style="filter: brightness(0) invert(1);">
+            Join Discord
+        </a>
 
-<div class="ip-box">
-<span>mc.zx-spectrum.online</span>
-<img src="https://static.thenounproject.com/png/361082-200.png" class="copy-icon" onclick="copyIP()" title="Copy IP">
-</div>
+        <br>
+
+        <div class="ip-box" onclick="copyIP()">
+            <span>mc.zx-spectrum.online</span>
+            <img src="https://static.thenounproject.com/png/361082-200.png" class="copy-icon">
+        </div>
+    </div>
 </div>
 
 <div class="main-wrapper">
-<section>
-<h2>About The Server 🚀</h2>
-<p>
-ZX Spectrum! Minecraft Server delivers a stable and optimized survival world 
-designed for long-term progression, base building and competitive interaction. 🏗  
-Players can explore vast terrain, build impressive structures and engage in PvP encounters.
-</p>
-<br>
-<p>
-The server infrastructure is tuned for minimal lag and consistent uptime, 
-ensuring a smooth gameplay experience during both peak and off-peak hours. ⚡  
-Ice Boat Racing tracks add a fast-paced competitive activity for players who 
-enjoy skill-based challenges. 🧊
-</p>
-</section>
+    <section>
+        <h2>About The Server 🚀</h2>
+        <p>Optimized for performance, built for the community. Our 60GB RAM ensures your builds and farms run smoothly 24/7.</p>
+    </section>
 
-<section>
-<h2>Features ✨</h2>
-<div class="grid">
-<div class="feature">
-<h3>🌍 Survival World</h3>
-<p>Progression-focused survival gameplay with long-term world stability.</p>
-</div>
-<div class="feature">
-<h3>⚔ PvP Enabled</h3>
-<p>Competitive combat experience with optimized server performance.</p>
-</div>
-<div class="feature">
-<h3>🧊 Ice Boat Racing</h3>
-<p>Skill-based racing tracks designed for fast reaction gameplay.</p>
-</div>
-<div class="feature">
-<h3>🖥 G7 Enterprise</h3>
-<p>Hosted on a dedicated HP ProLiant DL380 G7 with 60GB RAM.</p>
-</div>
-</div>
-</section>
+    <section>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+            <div class="feature">
+                <h3>🌍 Survival</h3>
+                <p>Pure survival gameplay with long-term world stability.</p>
+            </div>
+            <div class="feature">
+                <h3>⚡ Enterprise</h3>
+                <p>Running on dedicated HP ProLiant G7 hardware.</p>
+            </div>
+            <div class="feature">
+                <h3>🏎️ Ice Racing</h3>
+                <p>High-speed competition on custom ice tracks.</p>
+            </div>
+        </div>
+    </section>
 
-<section>
-<h2>Server Trailer 🎬</h2>
-<div class="trailer-wrapper">
-<iframe width="400" height="710"
-src="https://www.youtube.com/embed/_WcpJCEViX8"
-title="ZX Spectrum Minecraft Server Trailer"
-frameborder="0"
-allowfullscreen>
-</iframe>
-</div>
-</section>
-
-<footer>
-© 2026 ZX Spectrum! Minecraft Server 🎮<br>
-mc.zx-spectrum.online
-</footer>
+    <footer>
+        © 2026 ZX Spectrum! Minecraft Server<br>
+        Bratislava, Slovakia
+    </footer>
 </div>
 
 <script>
 function copyIP(){
     navigator.clipboard.writeText("mc.zx-spectrum.online");
-    alert("IP Copied: mc.zx-spectrum.online");
+    const msg = document.getElementById('copy-msg');
+    msg.classList.add('show');
+    setTimeout(() => {
+        msg.classList.remove('show');
+    }, 2000);
 }
 </script>
 
