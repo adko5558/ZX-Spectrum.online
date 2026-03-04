@@ -15,14 +15,12 @@
 
 <link rel="icon" type="image/jpeg" href="https://www.techadvisor.com/wp-content/uploads/2022/06/zx-spectrum-why-most-important-computer-in-history.jpg">
 
-<!-- Open Graph -->
 <meta property="og:title" content="ZX Spectrum! Minecraft Server">
 <meta property="og:description" content="Survival Minecraft Server running 1.21.11. PvP enabled, Ice Boat Racing and stable hosting.">
 <meta property="og:image" content="https://www.techadvisor.com/wp-content/uploads/2022/06/zx-spectrum-why-most-important-computer-in-history.jpg">
 <meta property="og:url" content="https://zx-spectrum.online/">
 <meta property="og:type" content="website">
 
-<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ZX Spectrum! Minecraft Server">
 <meta name="twitter:description" content="Survival Minecraft Server 1.21.11">
@@ -37,6 +35,28 @@ body{
     font-family:'Inter',sans-serif;
     background:#0f172a;
     color:#e2e8f0;
+    overflow-x: hidden;
+}
+
+/* SPLASHSCREEN / HERO IMAGE */
+.splash {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Na celú obrazovku */
+    background-image: url('https://i.postimg.cc/hj3p70qW/obrazok.png');
+    background-size: cover;
+    background-position: center;
+    filter: blur(3px); /* Maalicko rozmazany */
+    transform: scale(1.05); /* Natiahnuty kvoli blur okrajom */
+    z-index: -1;
+}
+
+/* Na mobile zrušíme fixnú výšku ak by to zavadzalo, ale podľa tvojho priania nechávame flexibilné */
+@media (max-width: 768px) {
+    .splash {
+        filter: blur(2px);
+        transform: scale(1);
+    }
 }
 
 /* NAVIGATION */
@@ -44,7 +64,8 @@ nav{
     position:fixed;
     top:0;
     width:100%;
-    background:#0f172a;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
     border-bottom:1px solid #1e293b;
     display:flex;
     justify-content:space-between;
@@ -63,6 +84,7 @@ nav{
 .nav-links{
     display:flex;
     gap:30px;
+    align-items: center;
 }
 
 .nav-links a{
@@ -73,28 +95,55 @@ nav{
     transition:.2s;
 }
 
-.nav-links a::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-4px;
-    width:0%;
-    height:2px;
-    background:#64748b;
-    transition:.2s;
-}
-
 .nav-links a:hover{
     color:#fff;
 }
 
-.nav-links a:hover::after{
-    width:100%;
+/* SPECIAL SHOP BUTTON */
+.shop-btn {
+    position: relative;
+    padding: 8px 20px;
+    background: #0f172a;
+    border-radius: 8px;
+    color: #fff !important;
+    font-weight: 600;
+    z-index: 1;
+    display: inline-block;
+    overflow: hidden;
 }
 
-/* CONTENT OFFSET FOR FIXED NAV */
-body{
-    padding-top:90px;
+.shop-btn::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, #ff4500, #ff8c00, #ffd700, #ff4500);
+    animation: rotate 4s linear infinite;
+    z-index: -2;
+}
+
+.shop-btn::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: #0f172a;
+    border-radius: 6px;
+    z-index: -1;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* CONTENT CONTAINER */
+.main-wrapper {
+    position: relative;
+    background: #0f172a;
+    z-index: 10;
+    margin-top: 0; /* Začína hneď po splashscreene */
 }
 
 section{
@@ -109,7 +158,8 @@ h1,h2,h3{
 }
 
 h1{
-    font-size:3rem;
+    font-size:3.5rem;
+    text-shadow: 0 0 20px rgba(255, 69, 0, 0.6);
 }
 
 h2{
@@ -124,17 +174,25 @@ p{
 }
 
 .hero{
-    min-height:90vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     text-align:center;
+    z-index: 5;
+    background: rgba(0,0,0,0.2);
 }
 
 .hero p{
     max-width:750px;
     margin:25px 0;
+    font-weight: 500;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
 }
 
 .btn{
@@ -149,34 +207,33 @@ p{
 }
 
 .btn-discord{
-    background:#2d3748;
+    background:#5865F2;
     color:#fff;
 }
 
 .btn-discord:hover{
-    background:#4a5568;
+    background:#4752c4;
+    transform: scale(1.05);
 }
 
 .ip-box{
     margin-top:35px;
     font-size:1.3rem;
-    background:#1e293b;
+    background: rgba(30, 41, 59, 0.9);
     padding:18px 30px;
     border-radius:10px;
-    border:1px solid #334155;
+    border:1px solid #ff4500;
     display:flex;
     align-items:center;
     gap:12px;
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.3);
 }
 
 .copy-icon{
     width:22px;
     cursor:pointer;
     opacity:.8;
-}
-
-.copy-icon:hover{
-    opacity:1;
+    filter: invert(1);
 }
 
 .grid{
@@ -194,7 +251,7 @@ p{
 }
 
 .feature:hover{
-    border-color:#64748b;
+    border-color:#ff8c00;
     transform:translateY(-4px);
 }
 
@@ -219,25 +276,24 @@ footer{
 <a href="./" class="logo">ZX Spectrum!</a>
 
 <div class="nav-links">
-<a href="./about">About our Server</a>
+<a href="./about">About</a>
 <a href="./faq">FAQ</a>
-<a href="./contact">Contact Us</a>
-<a href="//shop.zx-spectrum.online/">Shop</a>
+<a href="./contact">Contact</a>
+<a href="//shop.zx-spectrum.online/" class="shop-btn">Shop</a>
 </div>
 </nav>
 
+<div class="splash"></div>
+
 <div class="hero">
 <h1>ZX Spectrum! 🎮</h1>
-
 <p>
-ZX Spectrum! is a Minecraft survival server running version 1.21.11 
-with support for clients 1.8.9 and newer. ⚔  
-Enjoy smooth performance, balanced PvP combat and a clean survival experience 
-focused on gameplay and community. 🌍
+Survival server running 1.21.11 on enterprise HP hardware. <br>
+Experience the true power of dedicated performance in Bratislava.
 </p>
 
 <a href="https://discord.com/invite/5c2n8drRzc" target="_blank" class="btn btn-discord">
-<img src="https://pngimg.com/d/discord_PNG3.png" width="18">
+<img src="https://pngimg.com/d/discord_PNG3.png" width="18" style="filter: brightness(0) invert(1);">
 Join Discord 💬
 </a>
 
@@ -247,48 +303,41 @@ Join Discord 💬
 </div>
 </div>
 
+<div class="main-wrapper">
 <section>
 <h2>About The Server 🚀</h2>
-
 <p>
 ZX Spectrum! Minecraft Server delivers a stable and optimized survival world 
 designed for long-term progression, base building and competitive interaction. 🏗  
 Players can explore vast terrain, build impressive structures and engage in PvP encounters.
 </p>
-
 <br>
-
 <p>
 The server infrastructure is tuned for minimal lag and consistent uptime, 
 ensuring a smooth gameplay experience during both peak and off-peak hours. ⚡  
 Ice Boat Racing tracks add a fast-paced competitive activity for players who 
 enjoy skill-based challenges. 🧊
 </p>
-
 </section>
 
 <section>
 <h2>Features ✨</h2>
-
 <div class="grid">
 <div class="feature">
 <h3>🌍 Survival World</h3>
 <p>Progression-focused survival gameplay with long-term world stability.</p>
 </div>
-
 <div class="feature">
 <h3>⚔ PvP Enabled</h3>
 <p>Competitive combat experience with optimized server performance.</p>
 </div>
-
 <div class="feature">
 <h3>🧊 Ice Boat Racing</h3>
 <p>Skill-based racing tracks designed for fast reaction gameplay.</p>
 </div>
-
 <div class="feature">
-<h3>🖥 Stable Hosting</h3>
-<p>Reliable hardware and infrastructure ensuring consistent uptime.</p>
+<h3>🖥 G7 Enterprise</h3>
+<p>Hosted on a dedicated HP ProLiant DL380 G7 with 60GB RAM.</p>
 </div>
 </div>
 </section>
@@ -309,6 +358,7 @@ allowfullscreen>
 © 2026 ZX Spectrum! Minecraft Server 🎮<br>
 mc.zx-spectrum.online
 </footer>
+</div>
 
 <script>
 function copyIP(){
