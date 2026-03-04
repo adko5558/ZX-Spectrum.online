@@ -7,12 +7,9 @@
 <title>Contact Us | ZX Spectrum! Minecraft Server</title>
 
 <meta name="description" content="Contact ZX Spectrum! Minecraft Server for support, questions, or community inquiries. Reach us via email or Discord.">
-
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://zx-spectrum.online/contact">
-
 <link rel="icon" type="image/jpeg" href="https://www.techadvisor.com/wp-content/uploads/2022/06/zx-spectrum-why-most-important-computer-in-history.jpg">
-
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
@@ -22,164 +19,186 @@ body{
     font-family:'Inter',sans-serif;
     background:#0f172a;
     color:#e2e8f0;
-    padding-top:90px;
+    overflow-x: hidden;
 }
 
-nav{
-    position:fixed;
-    top:0;
-    width:100%;
-    background:#0f172a;
-    border-bottom:1px solid #1e293b;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:18px 40px;
-    z-index:1000;
+/* BACKGROUND FIXED & BLURRED */
+.splash-bg {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+    background-image: url('https://i.postimg.cc/hj3p70qW/obrazok.png');
+    background-size: cover; background-position: center;
+    filter: blur(10px) brightness(0.5);
+    transform: scale(1.05); z-index: -1;
 }
 
-.logo{
-    font-family:'Orbitron',sans-serif;
-    font-size:1.2rem;
-    color:#fff;
-    text-decoration:none;
+/* LIQUID GLASS NAVIGATION */
+nav {
+    position: fixed; top: 15px; left: 50%; transform: translateX(-50%);
+    width: 95%; max-width: 1200px;
+    background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 30px; z-index: 1000;
 }
 
-.nav-links{
-    display:flex;
-    gap:30px;
-}
+.logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo-img { height: 35px; border-radius: 5px; }
+.logo-text { font-family:'Orbitron',sans-serif; font-size: 1.1rem; color:#fff; }
 
-.nav-links a{
-    text-decoration:none;
-    color:#cbd5e1;
-    font-weight:500;
-    position:relative;
-    transition:.2s;
-}
+.nav-links { display: flex; gap: 15px; align-items: center; }
+.nav-links a:not(.shop-btn) { text-decoration: none; color: #cbd5e1; font-weight: 500; padding: 8px 15px; transition: 0.3s; }
+.nav-links a:not(.shop-btn):hover { color: #fff; background: rgba(255, 255, 255, 0.05); border-radius: 8px; }
 
-.nav-links a:hover{
-    color:#fff;
+.shop-btn {
+    padding: 10px 20px; color: #fff !important; font-weight: 600; text-decoration: none;
+    background: linear-gradient(90deg, #ff4500, #ff8c00, #ff4500); background-size: 200% 100%;
+    border-radius: 10px; animation: liquid 4s linear infinite;
 }
+@keyframes liquid { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
 
+.mobile-menu-btn { display: none; font-size: 1.8rem; color: #fff; cursor: pointer; }
+
+/* CONTENT SECTION */
 section{
     max-width:900px;
     margin:auto;
-    padding:80px 20px;
+    padding:140px 20px 80px;
+    position: relative;
+    z-index: 1;
 }
 
 h1{
     font-family:'Orbitron',sans-serif;
-    font-size:2.5rem;
-    margin-bottom:40px;
+    font-size:2.8rem;
+    margin-bottom:30px;
     text-align:center;
     color:#fff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
 }
 
 h2{
     font-family:'Orbitron',sans-serif;
-    font-size:2rem;
-    margin:35px 0 20px 0;
+    font-size:1.6rem;
+    margin:40px 0 20px 0;
     color:#fff;
+    border-left: 4px solid #ff4500;
+    padding-left: 15px;
 }
 
-p{
-    line-height:1.8;
-    color:#cbd5e1;
-    margin-bottom:20px;
-}
+p{ line-height:1.8; color:#cbd5e1; margin-bottom:20px; }
 
+/* METAL GLASS CONTACT CARDS */
 .contact-card{
-    background:#1e293b;
-    border:1px solid #334155;
-    border-radius:12px;
-    padding:25px 30px;
-    margin-bottom:25px;
-    display:flex;
-    align-items:center;
-    gap:18px;
-    transition:.25s;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 25px 30px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .contact-card:hover{
-    border-color:#64748b;
-    transform:translateY(-3px);
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 69, 0, 0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
 }
 
-.contact-card img{
-    width:32px;
-    height:32px;
-    border-radius:6px;
-}
+.contact-card img{ width:32px; height:32px; border-radius:6px; }
 
 .contact-card a{
-    color:#cbd5e1;
-    font-weight:500;
+    color:#fff;
+    font-weight:600;
     text-decoration:none;
+    transition: 0.2s;
 }
 
-.contact-card a:hover{
-    color:#fff;
-}
+.contact-card a:hover{ color:#ff8c00; }
+
 footer{
     text-align:center;
     padding:50px 20px;
-    border-top:1px solid #1e293b;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     font-size:.9rem;
     color:#94a3b8;
 }
-</style>
 
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+    nav { padding: 10px 20px; }
+    .mobile-menu-btn { display: block; }
+    .nav-links {
+        position: fixed; top: 80px; right: -100%; width: 200px; height: auto;
+        background: rgba(15, 23, 42, 0.95); flex-direction: column; padding: 20px; border-radius: 15px; transition: 0.4s;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .nav-links.active { right: 20px; }
+    h1 { font-size: 2rem; }
+    .contact-card { flex-direction: column; text-align: center; }
+}
+</style>
 </head>
 <body>
 
+<div class="splash-bg"></div>
+
 <nav>
-<a href="./" class="logo">ZX Spectrum!</a>
-<div class="nav-links">
-<a href="./about">About our Server</a>
-<a href="./faq">FAQ</a>
-<a href="./contact">Contact Us</a>
-<a href="//shop.zx-spectrum.online/">Shop</a>
-</div>
+    <a href="./" class="logo-container">
+        <img src="https://www.techadvisor.com/wp-content/uploads/2022/06/zx-spectrum-why-most-important-computer-in-history.jpg" alt="Logo" class="logo-img">
+        <span class="logo-text">ZX Spectrum!</span>
+    </a>
+    <div class="mobile-menu-btn" onclick="toggleMenu()">三</div>
+    <div class="nav-links" id="navLinks">
+        <a href="./about">About</a>
+        <a href="./faq">FAQ</a>
+        <a href="./contact">Contact</a>
+        <a href="//shop.zx-spectrum.online/" class="shop-btn">Shop</a>
+    </div>
 </nav>
 
 <section>
-<h1>Contact ZX Spectrum! 🎮</h1>
+    <h1>Contact ZX Spectrum! 🎮</h1>
 
-<p>
-Need help, want to report an issue, or just want to say hi?  
-You can reach the ZX Spectrum! team using the methods below.  
-We strive to respond quickly and make sure your experience on the server is smooth and fun. ⚡
-</p>
+    <p>
+    Need help, want to report an issue, or just want to say hi?  
+    You can reach the ZX Spectrum! team using the methods below.  
+    We strive to respond quickly and make sure your experience on the server is smooth and fun. ⚡
+    </p>
 
-<h2>📬 Email</h2>
-<div class="contact-card">
-<img src="https://static.thenounproject.com/png/361082-200.png" alt="Email Icon">
-<a href="mailto:support@zx-spectrum.online">support@zx-spectrum.online</a>
-</div>
+    <h2>📬 Email</h2>
+    <div class="contact-card">
+        <img src="https://static.thenounproject.com/png/361082-200.png" alt="Email Icon" style="filter: invert(1);">
+        <a href="mailto:support@zx-spectrum.online">support@zx-spectrum.online</a>
+    </div>
 
-<h2>💬 Discord</h2>
-<div class="contact-card">
-<img src="https://pngimg.com/d/discord_PNG3.png" alt="Discord Icon">
-<a href="https://discord.com/users/1100513026861445142" target="_blank">Adko5558</a>
-</div>
+    <h2>💬 Discord</h2>
+    <div class="contact-card">
+        <img src="https://pngimg.com/d/discord_PNG3.png" alt="Discord Icon">
+        <a href="https://discord.com/users/1100513026861445142" target="_blank">Adko5558</a>
+    </div>
 
-<h2>Other Info 📝</h2>
-<div class="contact-card">
-<p>If you have a general question about the server, events, or gameplay, you can always join our <a href="https://discord.com/invite/5c2n8drRzc" target="_blank">community Discord</a> to chat with staff and other players.  
-We are also happy to help guide new players through the server mechanics and features!</p>
-</div>
+    <h2>Other Info 📝</h2>
+    <div class="contact-card">
+        <p>If you have a general question about the server, events, or gameplay, you can always join our <a href="https://discord.com/invite/5c2n8drRzc" target="_blank" style="color: #ff8c00;">community Discord</a> to chat with staff and other players.  
+        We are also happy to help guide new players through the server mechanics and features!</p>
+    </div>
 
-<div class="contact-card">
-<p>For urgent server issues or bug reports, using both the email and Discord methods is recommended.  
-Our admins monitor the server closely from their official staff room at spawn to ensure fair play and stability at all times.</p>
-</div>
+    <div class="contact-card">
+        <p>For urgent server issues or bug reports, using both the email and Discord methods is recommended.  
+        Our admins monitor the server closely from their official staff room at spawn to ensure fair play and stability at all times.</p>
+    </div>
 
-<div class="contact-card">
-<p>ZX Spectrum! Minecraft Server is dedicated to giving a premium survival experience 🌍.  
-We are always open to suggestions, feedback, and new ideas from our community.  
-Your voice helps shape the world and events we create!</p>
-</div>
+    <div class="contact-card">
+        <p>ZX Spectrum! Minecraft Server is dedicated to giving a premium survival experience 🌍.  
+        We are always open to suggestions, feedback, and new ideas from our community.  
+        Your voice helps shape the world and events we create!</p>
+    </div>
 
 </section>
 
@@ -187,6 +206,10 @@ Your voice helps shape the world and events we create!</p>
 © 2026 ZX Spectrum! Minecraft Server!<br>
 mc.zx-spectrum.online
 </footer>
+
+<script>
+function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+</script>
 
 </body>
 </html>
