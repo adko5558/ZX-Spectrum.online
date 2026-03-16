@@ -1,5 +1,12 @@
 # Welcome to ZX-Spectrum.online!
-I love this so muuuch!
+I am using Github as a file storage and Vercel as a web server so I don't have to configure my own server to be secure and deal with bots that are trying to hack me.
+Do not hack. Don't. It's illegal and you get nothing from it.
 
-So, if you don't know, zx-spectrum.online leads to vercel which leads to this beautifull repository and server.zx-spectrum.online to my server! btw don't hack me pleeease! Thank youu!
-Best, Adko5558
+By the way join my Minecraft server! It has 17 Gigabytes of RAM lol
+IP `ZX-Spectrum.online`
+
+
+Adko5558
+- the server owner
+- the website owner
+- the Google owner ;)
