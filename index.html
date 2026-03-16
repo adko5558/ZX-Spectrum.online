@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZX Spectrum! Minecraft Server</title>
-<link rel="icon" type="image/jpeg" href="https://www.techadvisor.com/wp-content/uploads/2022/06/zx-spectrum-why-most-important-computer-in-history.jpg">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ZX Spectrum! Minecraft Server!</title>
+
+<!-- SEO Meta Tags -->
+<meta name="description" content="ZX Spectrum Minecraft Server – Survival server with PvP, ice racing, stable hosting and active community. Join now!" />
+<link rel="canonical" href="https://zx-spectrum.online/" />
+<meta name="robots" content="index, follow" />
+
+<!-- OpenGraph for social sharing -->
+<meta property="og:title" content="ZX Spectrum! Minecraft Server" />
+<meta property="og:description" content="Survival Minecraft server with PvP, ice racing, and an active community." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://zx-spectrum.online/" />
+<meta property="og:image" content="https://www.techadvisor.com/wp-content/uploads/2022/06/zx-spectrum-why-most-important-computer-in-history.jpg" />
+
+<!-- Favicon (upload favicon.png to your root!) -->
+<link rel="icon" href="/favicon.ico" sizes="48x48" type="image/x-icon" />
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -16,7 +32,7 @@ body{font-family:'Inter',sans-serif; background:#0f172a; color:#e2e8f0; overflow
     position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
     background-image: url('https://i.postimg.cc/hj3p70qW/obrazok.png');
     background-size: cover; background-position: center;
-    filter: blur(4px) brightness(0.6); /* Menej blur */
+    filter: blur(4px) brightness(0.6);
     transform: scale(1.05); z-index: -1;
 }
 
@@ -103,7 +119,7 @@ h2 { font-family: 'Orbitron', sans-serif; font-size: 2.2rem; text-align: center;
 
 <nav>
     <a href="./" class="logo-container">
-        <img src="https://www.techadvisor.com/wp-content/uploads/2022/06/zx-spectrum-why-most-important-computer-in-history.jpg" alt="Logo" class="logo-img">
+        <img src="https://www.techadvisor.com/wp-content/uploads/2022/06/zx-spectrum-why-most-important-computer-in-history.jpg" alt="Logo" class="logo-img" />
         <span class="logo-text">ZX Spectrum!</span>
     </a>
     <div class="mobile-menu-btn" onclick="toggleMenu()">三</div>
@@ -121,14 +137,14 @@ h2 { font-family: 'Orbitron', sans-serif; font-size: 2.2rem; text-align: center;
         <p>Survival Minecraft Server running on 1.21.11.</p>
         
         <a href="https://discord.com/invite/5c2n8drRzc" target="_blank" class="btn-discord">
-            <img src="https://pngimg.com/d/discord_PNG3.png" width="22" style="filter: brightness(0) invert(1);">
+            <img src="https://pngimg.com/d/discord_PNG3.png" width="22" style="filter: brightness(0) invert(1);" alt="Discord" />
             Join our Discord Community
         </a>
         
-        <br>
+        <br />
         <div class="ip-box" onclick="copyIP()">
             <span>mc.zx-spectrum.online</span>
-            <img src="https://static.thenounproject.com/png/361082-200.png" class="copy-icon" alt="copy">
+            <img src="https://static.thenounproject.com/png/361082-200.png" class="copy-icon" alt="copy" />
         </div>
     </div>
 </div>
@@ -159,7 +175,9 @@ h2 { font-family: 'Orbitron', sans-serif; font-size: 2.2rem; text-align: center;
 </div>
 
 <script>
-function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+}
 function copyIP(){
     navigator.clipboard.writeText("mc.zx-spectrum.online");
     const msg = document.getElementById('copy-msg');
