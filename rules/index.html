@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Server Rules | ZX Spectrum! Minecraft Server</title>
+<meta name="description" content="Read the official rules for ZX Spectrum! Minecraft Server. Learn about griefing, cheating, PvP, builds, and Unstable World guidelines.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://zx-spectrum.online/rules">
+<link rel="icon" type="image/jpeg" href="https://www.techadvisor.com/wp-content/uploads/2022/06/zx-spectrum-why-most-important-computer-in-history.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:#0f172a;
+    color:#e2e8f0;
+    overflow-x: hidden;
+}
+
+/* BACKGROUND FIXED & BLURRED */
+.splash-bg {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+    background-image: url('https://i.postimg.cc/hj3p70qW/obrazok.png');
+    background-size: cover; background-position: center;
+    filter: blur(10px) brightness(0.5);
+    transform: scale(1.05); z-index: -1;
+}
+
+/* LIQUID GLASS NAVIGATION */
+nav {
+    position: fixed; top: 15px; left: 50%; transform: translateX(-50%);
+    width: 95%; max-width: 1200px;
+    background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 30px; z-index: 1000;
+}
+
+.logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo-img { height: 35px; border-radius: 5px; }
+.logo-text { font-family:'Orbitron',sans-serif; font-size: 1.1rem; color:#fff; }
+
+.nav-links { display: flex; gap: 15px; align-items: center; }
+.nav-links a:not(.shop-btn) { text-decoration: none; color: #cbd5e1; font-weight: 500; padding: 8px 15px; transition: 0.3s; }
+.nav-links a:not(.shop-btn):hover { color: #fff; background: rgba(255, 255, 255, 0.05); border-radius: 8px; }
+
+.shop-btn {
+    padding: 10px 20px; color: #fff !important; font-weight: 600; text-decoration: none;
+    background: linear-gradient(90deg, #ff4500, #ff8c00, #ff4500); background-size: 200% 100%;
+    border-radius: 10px; animation: liquid 4s linear infinite;
+}
+@keyframes liquid { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+
+.mobile-menu-btn { display: none; font-size: 1.8rem; color: #fff; cursor: pointer; }
+
+/* CONTENT SECTION */
+section{
+    max-width:900px;
+    margin:auto;
+    padding:140px 20px 80px;
+    position: relative;
+    z-index: 1;
+}
+
+h1{
+    font-family:'Orbitron',sans-serif;
+    font-size:2.5rem;
+    margin-bottom:40px;
+    text-align:center;
+    color:#fff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+h2{
+    font-family:'Orbitron',sans-serif;
+    font-size:1.4rem;
+    margin:25px 0 15px 0;
+    color:#fff;
+    border-left: 4px solid #ff4500;
+    padding-left: 12px;
+}
+
+p{ line-height:1.8; color:#cbd5e1; margin-bottom:15px; }
+
+/* GLASS RULE CARDS */
+.rule-card{
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px 25px;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+.rule-card:hover{
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 69, 0, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.unstable-world {
+    border-left: 4px solid #1e90ff;
+    padding-left: 12px;
+    background: rgba(30, 144, 255, 0.05);
+    margin-top: 30px;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:50px 20px;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size:.9rem;
+    color:#94a3b8;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+    nav { padding: 10px 20px; }
+    .mobile-menu-btn { display: block; }
+    .nav-links {
+        position: fixed; top: 80px; right: -100%; width: 200px; height: auto;
+        background: rgba(15, 23, 42, 0.95); flex-direction: column; padding: 20px; border-radius: 15px; transition: 0.4s;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .nav-links.active { right: 20px; }
+    h1 { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="splash-bg"></div>
+
+<nav>
+    <a href="./" class="logo-container">
+        <img src="https://www.techadvisor.com/wp-content/uploads/2022/06/zx-spectrum-why-most-important-computer-in-history.jpg" alt="Logo" class="logo-img">
+        <span class="logo-text">ZX Spectrum!</span>
+    </a>
+    <div class="mobile-menu-btn" onclick="toggleMenu()">三</div>
+    <div class="nav-links" id="navLinks">
+        <a href="./about">About</a>
+        <a href="./faq">FAQ</a>
+        <a href="./rules">Rules</a>
+        <a href="./contact">Contact</a>
+        <a href="//shop.zx-spectrum.online/" class="shop-btn">Shop</a>
+    </div>
+</nav>
+
+<section>
+    <h1>Server Rules ⚔️</h1>
+
+    <div class="rule-card">
+        <h2>1️⃣ No griefing</h2>
+        <p>Do not destroy or modify other players’ builds without permission.</p>
+    </div>
+
+    <div class="rule-card">
+        <h2>2️⃣ No cheating or hacking</h2>
+        <p>Hacks, cheats, X-ray, dupes, or unfair mods are strictly forbidden. If you ask an admin for the [HACKER] role, you can ignore this rule!</p>
+    </div>
+
+    <div class="rule-card">
+        <h2>3️⃣ Be respectful in chat</h2>
+        <p>No insults, bullying, or toxic behavior.</p>
+    </div>
+
+    <div class="rule-card">
+        <h2>4️⃣ No stealing</h2>
+        <p>Do not take items from other players’ chests or bases... unless you're 1000 blocks from spawn xd.</p>
+    </div>
+
+    <div class="rule-card">
+        <h2>5️⃣ No exploiting bugs</h2>
+        <p>If you find a bug, report it to staff instead of abusing it.</p>
+    </div>
+
+    <div class="rule-card">
+        <h2>6️⃣ Keep builds appropriate</h2>
+        <p>No offensive, inappropriate, or hateful builds.</p>
+    </div>
+
+    <div class="rule-card">
+        <h2>7️⃣ KILL EVERYONE!!!!</h2>
+        <p>Yea, it's the best idea in the world 😉.</p>
+    </div>
+
+    <div class="rule-card">
+        <h2>8️⃣ Reduce lag</h2>
+        <p>Avoid excessive redstone clocks, farms, or entities that cause lag.</p>
+    </div>
+
+    <div class="rule-card">
+        <h2>9️⃣ Listen to staff</h2>
+        <p>Admins and moderators can take action to keep the server fair and fun.</p>
+    </div>
+
+    <div class="rule-card unstable-world">
+        <h2>🔹 Unstable World</h2>
+        <p>In "Unstable World" you can hack, grief, or do whatever you want. No rules apply here – go wild!</p>
+    </div>
+
+    <p style="margin-top:30px; text-align:center; color:#ff4500; font-family:'Orbitron';">That's all! Thanks for reading. See ya in da server 😄</p>
+</section>
+
+<footer>
+© 2026 ZX Spectrum! Minecraft Server!<br>
+ZX-Spectrum.online!
+</footer>
+
+<script>
+function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+</script>
+
+</body>
+</html>
