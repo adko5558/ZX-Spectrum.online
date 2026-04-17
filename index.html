@@ -1,7 +1,86 @@
-<center><h3>ZX-Spectrum.online</h3></center>
-<p>14.4.2026 - Adko5558</p>
-<center><h1>WEBSITE UNDER CONSTRUCTION! WILL BE PUBLISHED REAL SOON :D</h1></center>
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZX-Spectrum.online</title>
+    <style>
+        /* Retro font - ak nie je dostupný, použije monospaced */
+        @import url('https://googleapis.com');
 
+        body {
+            background-color: #0d0d0d;
+            color: #00ff41; /* Klasická terminálová zelená */
+            font-family: 'VT323', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            overflow: hidden;
+        }
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4821569873325904"
+        .container {
+            border: 2px solid #00ff41;
+            padding: 2rem;
+            box-shadow: 0 0 15px #00ff41;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        h3 {
+            font-size: 2rem;
+            margin: 0;
+            letter-spacing: 4px;
+            color: #ff00ff; /* Ružový akcent v štýle 80s */
+            text-shadow: 2px 2px #000;
+        }
+
+        .date-author {
+            font-size: 1.2rem;
+            color: #008f11;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-top: 10px;
+            text-transform: uppercase;
+            animation: blink 1s infinite;
+        }
+
+        /* Animácia blikania pre "Under Construction" */
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Dekorácia: ZX Spectrum farebné pásiky */
+        .spectrum-bar {
+            height: 5px;
+            width: 100%;
+            background: linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff);
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h3>ZX-Spectrum.online</h3>
+        <div class="date-author">14.4.2026 - Adko5558</div>
+        
+        <h1>WEBSITE UNDER CONSTRUCTION!</h1>
+        <p style="font-size: 1.5rem;">WILL BE PUBLISHED REAL SOON :D</p>
+    </div>
+
+    <div class="spectrum-bar"></div>
+
+    <!-- AdSense skript ostáva zachovaný -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4821569873325904"
      crossorigin="anonymous"></script>
+</body>
+</html>
