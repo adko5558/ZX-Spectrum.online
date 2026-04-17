@@ -3,84 +3,603 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZX-Spectrum.online</title>
+    <title>ZX-Spectrum.online - Dev Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Retro font - ak nie je dostupný, použije monospaced */
-        @import url('https://googleapis.com');
-
-        body {
-            background-color: #0d0d0d;
-            color: #00ff41; /* Klasická terminálová zelená */
-            font-family: 'VT323', monospace;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
-            overflow: hidden;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
-
-        .container {
-            border: 2px solid #00ff41;
-            padding: 2rem;
-            box-shadow: 0 0 15px #00ff41;
-            background: rgba(0, 0, 0, 0.8);
+        
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(-10px); }
+            100% { transform: translateX(0); }
         }
-
-        h3 {
-            font-size: 2rem;
-            margin: 0;
-            letter-spacing: 4px;
-            color: #ff00ff; /* Ružový akcent v štýle 80s */
-            text-shadow: 2px 2px #000;
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
-
-        .date-author {
-            font-size: 1.2rem;
-            color: #008f11;
-            margin-bottom: 20px;
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
         }
-
-        h1 {
-            font-size: 3rem;
-            margin-top: 10px;
-            text-transform: uppercase;
-            animation: blink 1s infinite;
+        
+        .slide-animation {
+            animation: slide 8s ease-in-out infinite;
         }
-
-        /* Animácia blikania pre "Under Construction" */
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
+        
+        .pulse-animation {
+            animation: pulse 3s ease-in-out infinite;
         }
-
-        /* Dekorácia: ZX Spectrum farebné pásiky */
-        .spectrum-bar {
-            height: 5px;
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #ef4444, #eab308, #22c55e, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
             width: 100%;
-            background: linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff);
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            cursor: zoom-out;
+        }
+        
+        .modal-content {
             position: absolute;
-            bottom: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 90%;
+            cursor: default;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close-modal:hover {
+            color: #bbb;
+        }
+        
+        .comment-slide {
+            animation: slide 8s linear infinite;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .rainbow-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                75deg,
+                #ff0002 0px,
+                #ff0002 20px,
+                #fdff00 20px,
+                #fdff00 40px,
+                #00ff03 40px,
+                #00ff03 60px,
+                #01fffe 60px,
+                #01fffe 80px,
+                #000000 80px,
+                #000000 100px
+            );
+            filter: blur(8px);
+            -webkit-filter: blur(8px);
+            opacity: 0.4;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .google-play-btn {
+            transition: none !important;
+        }
+        
+        .google-play-btn:hover {
+            transform: none !important;
+            box-shadow: none !important;
+        }
+        
+        .jellyWobble {
+            animation: none;
+        }
+        
+        .glass-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+        
+        @media (max-width: 768px) {
+            .glass-box {
+                background: rgba(255, 255, 255, 0.25);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.35);
+                box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.2);
+            }
+            
+            .rainbow-animation {
+                filter: blur(4px);
+                -webkit-filter: blur(4px);
+                opacity: 0.3;
+            }
         }
     </style>
 </head>
-<body>
+<body class="bg-white text-gray-900">
+    <section class="h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-red-500 via-yellow-500 to-green-500 opacity-10"></div>
+        <div class="rainbow-animation"></div>
+        <div class="text-center z-10 px-4">
+            <div class="glass-box p-4 md:p-8 max-w-4xl mx-auto mb-6 md:mb-8">
+                <h1 class="text-4xl md:text-8xl font-bold gradient-text mb-2 md:mb-4 leading-tight">
+                    ZX-Spectrum.online
+                </h1>
+                <p class="text-lg md:text-2xl text-gray-700 max-w-2xl mx-auto">
+                    Moderné vývojové štúdio pre inovatívne mobilné aplikácie
+                </p>
+            </div>
+            <div class="glass-box p-4 md:p-6 max-w-2xl mx-auto">
+                <p class="text-base md:text-lg text-gray-700">
+                    Vitajte v svete digitálnej inovácie, kde technológie slúžia ľuďom
+                </p>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
+    </section>
 
-    <div class="container">
-        <h3>ZX-Spectrum.online</h3>
-        <div class="date-author">14.4.2026 - Adko5558</div>
-        
-        <h1>WEBSITE UNDER CONSTRUCTION!</h1>
-        <p style="font-size: 1.5rem;">WILL BE PUBLISHED REAL SOON :D</p>
+    <section class="h-32 bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 to-blue-500"></section>
+    
+    <section class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12">
+                <span class="text-red-500">O</span> <span class="text-yellow-500">Na</span><span class="text-green-500">š</span><span class="text-blue-500">om</span> <span class="text-red-500">Št</span><span class="text-yellow-500">úd</span><span class="text-green-500">iu</span>
+            </h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p class="text-lg leading-relaxed mb-6">
+                        Vitajte v <strong>ZX-Spectrum.online</strong> – modernom vývojovom štúdiu, ktoré sa zameriava na tvorbu inovatívnych mobilných aplikácií pre slovenský trh. Našu filozofiu staviame na jednoduchosti, efektivite a predovšetkým na kvalitnom zážitku pre koncového používateľa.
+                    </p>
+                    <p class="text-lg leading-relaxed mb-6">
+                        Veríme, že technológia má slúžiť ľuďom a zjednodušovať im život.
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="inline-block p-8 bg-gradient-to-br from-red-50 via-yellow-50 to-green-50 rounded-2xl hover-lift">
+                        <div class="text-6xl mb-4">ZX</div>
+                        <div class="text-2xl font-bold text-gray-800">Spectrum</div>
+                        <div class="text-lg text-gray-600">.online</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12">
+                <span class="text-red-500">M</span><span class="text-yellow-500">H</span><span class="text-green-500">D</span> <span class="text-red-500">R</span><span class="text-yellow-500">a</span><span class="text-green-500">d</span><span class="text-blue-500">ar</span>
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                <div>
+                    <img src="https://play-lh.googleusercontent.com/stB_3dD5bUDSa_IoghpbABpngzhzisI6Kk5Com-V1OgNUG1OFJweTLHX9eApjiu0gIsXR8VQmKcLbJC_2mwWWA=w480-h960" 
+                         alt="MHD Radar ikonka" 
+                         class="w-32 h-32 mx-auto mb-6 rounded-2xl shadow-lg hover-lift">
+                    <h3 class="text-2xl font-bold mb-4">Inteligentný dopravný sprievodca</h3>
+                    <p class="text-lg leading-relaxed mb-6">
+                        <strong>MHD Radar</strong> je revolučná mobilná aplikácia, ktorá mení spôsob, akým sa pohybujete mestskými hromadnými dopravnými prostriedkami. V reálnom čase sleduje polohu autobusov a električiek, poskytuje presné informácie o meškaniach a pomáha vám naplánovať vašu cestu s maximálnou efektivitou.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                            <span>GPS sledovanie vozidiel v reálnom čase</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                            <span>Presné informácie o meškaniach</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            <span>Viete že či vám autobus utiekol alebo ho ešte stíhate</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+                            <span>...a ďalšie!</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a href="https://play.google.com/store/apps/details?id=com.mhd.mhdradar" target="_blank" class="inline-block">
+                        <img src="https://zx-spectrum.online/google-play.png" 
+                             alt="Stiahnuť z Google Play" 
+                             class="w-64 h-auto cursor-pointer google-play-btn">
+                    </a>
+                    <br><br>
+                    <a href="https://mhd.zx-spectrum.online" target="_blank" class="inline-block bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors">
+                        Web verzia
+                    </a>
+                </div>
+            </div>
+                    <br>
+                    <p>Podporované platformy:</p>
+                    <br>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="px-4 py-2 bg-red-100 text-red-700 rounded-full font-semibold">Android</div>
+                        <div class="px-4 py-2 bg-yellow-100 text-yellow-700 rounded-full font-semibold">iOS (web)</div>
+                        <div class="px-4 py-2 bg-green-100 text-green-700 rounded-full font-semibold">PC</div>
+                        <div class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full font-semibold">Chladnička (vážne)</div>
+                    </div>
+                    <br>
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold text-center mb-8">Screenshoty:</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <img src="https://play-lh.googleusercontent.com/nOVVmW0eOZxgrdgY7JaFLlB4fsVkWjDz_5SzpSH297dE5J0GfBbYqxRJnEiL5DwLKFMPoIY_8YSJlf1rK0PEPck=w1052-h592" 
+                         alt="Screenshot 1" 
+                         class="w-full rounded-lg shadow-lg hover-lift cursor-pointer screenshot-img">
+                    <img src="https://play-lh.googleusercontent.com/w0A7ayZjsAI2sAfhINm0E3i3lrLCoc6nvB-JJ_hZWfygmmj0ohpOJAZ-H4cC4wHf5blHBfXu_RNeGwwwSDeSEw=w1052-h592" 
+                         alt="Screenshot 2" 
+                         class="w-full rounded-lg shadow-lg hover-lift cursor-pointer screenshot-img">
+                    <img src="https://play-lh.googleusercontent.com/OKkAUuAMtjKHrNl8AsZ_Ts9jL8UWtJS07JMGgOGkI5sa950d3lPhh4k1KZJAt2xVHCNOi8EIZZ80zADUKXwchw=w1052-h592" 
+                         alt="Screenshot 3" 
+                         class="w-full rounded-lg shadow-lg hover-lift cursor-pointer screenshot-img">
+                    <img src="https://play-lh.googleusercontent.com/z9dOXMim2CZGLXnlByhb0xNlE1WNClBN4zInZHqraJK4F4ZNq4r_1vl6-yhNPp9ISg3OwhaM2LmKnr1nwMKdVg=w1052-h592" 
+                         alt="Screenshot 4" 
+                         class="w-full rounded-lg shadow-lg hover-lift cursor-pointer screenshot-img">
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-8 shadow-lg">
+                <h3 class="text-2xl font-bold text-center mb-8">Ako hodnotia používatelia</h3>
+                <div class="overflow-hidden">
+                    <div class="comment-slide whitespace-nowrap">
+                        <div class="inline-flex gap-8">
+                            <div class="bg-gray-50 p-4 rounded-lg min-w-[300px]">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <div class="text-yellow-500">4.5</div>
+                                    <div class="flex text-yellow-500">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>½</span>
+                                    </div>
+                                </div>
+                                <p class="font-semibold">Monika</p>
+                                <p class="text-sm text-gray-600">Super appka! Ušetrila mi kopec času pri cestovaní do práce.</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg min-w-[300px]">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <div class="text-yellow-500">5</div>
+                                    <div class="flex text-yellow-500">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                    </div>
+                                </div>
+                                <p class="font-semibold">Ján</p>
+                                <p class="text-sm text-gray-600">Vždy viem, kedy mi autobus príde a koľko bude meškať.</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg min-w-[300px]">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <div class="text-yellow-500">5</div>
+                                    <div class="flex text-yellow-500">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                    </div>
+                                </div>
+                                <p class="font-semibold">Matej</p>
+                                <p class="text-sm text-gray-600">Milujem že keď 42ka išla iným smerom kvoli protestu tak som ako jediný nečakal na zastávke lol</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg min-w-[300px]">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <div class="text-yellow-500">4.5</div>
+                                    <div class="flex text-yellow-500">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>½</span>
+                                    </div>
+                                </div>
+                                <p class="font-semibold">Elena</p>
+                                <p class="text-sm text-gray-600">Super apka! Väčšinou na zastávke keď čakám tak som na sociálnych sieťach ale s MHD Radarom si zvyšujem svoj level aby som si mohla odomknúť rýchlejšiu aktualizáciu. Odporúčam hlavne mladšej generácii :D</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg min-w-[300px]">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <div class="text-yellow-500">5</div>
+                                    <div class="flex text-yellow-500">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                    </div>
+                                </div>
+                                <p class="font-semibold">Peter</p>
+                                <p class="text-sm text-gray-600">Konečne niečo čo funguje ako má, dik!</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg min-w-[300px]">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <div class="text-yellow-500">4</div>
+                                    <div class="flex text-yellow-500">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+                                    </div>
+                                </div>
+                                <p class="font-semibold">Maria</p>
+                                <p class="text-sm text-gray-600">Užitocna appka, casto pouzivam.</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg min-w-[300px]">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <div class="text-yellow-500">5</div>
+                                    <div class="flex text-yellow-500">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                    </div>
+                                </div>
+                                <p class="font-semibold">Tomas</p>
+                                <p class="text-sm text-gray-600">Super ked bolo zrusene niekolko liniek, hned som vedel.</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg min-w-[300px]">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <div class="text-yellow-500">4.5</div>
+                                    <div class="flex text-yellow-500">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>½</span>
+                                    </div>
+                                </div>
+                                <p class="font-semibold">Eva</p>
+                                <p class="text-sm text-gray-600">Rychle a presne, presne to co potrebujem.</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg min-w-[300px]">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <div class="text-yellow-500">5</div>
+                                    <div class="flex text-yellow-500">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                    </div>
+                                </div>
+                                <p class="font-semibold">Martin</p>
+                                <p class="text-sm text-gray-600">Neviem si predstavit ranie do prace bez tohto.</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg min-w-[300px]">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <div class="text-yellow-500">4</div>
+                                    <div class="flex text-yellow-500">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+                                    </div>
+                                </div>
+                                <p class="font-semibold">Lucia</p>
+                                <p class="text-sm text-gray-600">Dobra appka, mala by mat viac funkcii.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <div class="inline-block px-4 py-2 bg-orange-100 text-orange-700 rounded-full font-semibold mb-4">
+                    Nasleduje...
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-orange-500 mb-4">
+                    Rover
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Spojíme majiteľov psov so skúsenými psími strážcami. Pre tých, ktorí potrebujú opatrovať svojho miláčika, aj pre tých, ktorí chcú strážiť a zároveň si zarobiť.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">Pre majiteľov psov</h3>
+                    <ul class="space-y-4 text-lg">
+                        <li class="flex items-center gap-3">
+                            <div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+                            <span>Overení a skúsení psí strážcovia</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+                            <span>GPS sledovanie počas prechádzky</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+                            <span>Fotografie a videá z prechádzky</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+                            <span>Flexibilné plánovanie a rezervácie</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">Pre psích strážcov</h3>
+                    <ul class="space-y-4 text-lg">
+                        <li class="flex items-center gap-3">
+                            <div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+                            <span>Flexibilná práca podľa vlastného času</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+                            <span>Príjemné zarobenie na niečom, čo máte radi</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+                            <span>Vlastný profil a hodnotenia od klientov</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+                            <span>Bezpečné platby a poistenie</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="px-8 py-4 bg-gray-300 text-gray-500 rounded-lg font-semibold cursor-not-allowed flex items-center gap-2 mx-auto" disabled>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                    </svg>
+                    Stiahnuť (Pripravujeme)
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 bg-gradient-to-br from-gray-50 to-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12">
+                <span class="text-red-500">Na</span><span class="text-yellow-500">š</span><span class="text-green-500">e</span> <span class="text-blue-500">V</span><span class="text-red-500">ý</span><span class="text-yellow-500">h</span><span class="text-green-500">o</span><span class="text-blue-500">d</span><span class="text-red-500">y</span>
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-8 bg-white rounded-2xl shadow-lg hover-lift">
+                    <div class="text-4xl mb-4">🚀</div>
+                    <h3 class="text-xl font-bold mb-4">Inovácie</h3>
+                    <p class="text-gray-600">Vždy hľadáme nové riešenia a technológie, ktoré zlepšia život používateľov.</p>
+                </div>
+                <div class="text-center p-8 bg-white rounded-2xl shadow-lg hover-lift">
+                    <div class="text-4xl mb-4">💎</div>
+                    <h3 class="text-xl font-bold mb-4">Kvalita</h3>
+                    <p class="text-gray-600">Každý produkt je dôkladne testovaný a optimalizovaný pre najlepší zážitok.</p>
+                </div>
+                <div class="text-center p-8 bg-white rounded-2xl shadow-lg hover-lift">
+                    <div class="text-4xl mb-4">🛠️</div>
+                    <h3 class="text-xl font-bold mb-4">Podpora</h3>
+                    <p class="text-gray-600">Rýchla a profesionálna podpora pre všetkých našich používateľov.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 to-blue-500 text-white">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8">Kontaktujte nás</h2>
+            <p class="text-xl mb-8">Máte záujem o spoluprácu alebo chcete vedieť viac o našich produktoch?</p>
+            <div class="flex flex-wrap justify-center gap-8">
+                <div class="flex items-center gap-3">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                    </svg>
+                    <span>support@zx-spectrum.online</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M14.243 5.757a6 6 0 10-.986 9.284 1 1 0 111.087 1.678A8 8 0 1118 10a3 3 0 01-4.8 2.401A4 4 0 1114 10a1 1 0 102 0c0 1.537-.586 3.07-1.757 4.243a4 4 0 01-5.656 0A6 6 0 1014.243 5.757z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>www.zx-spectrum.online</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 4.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                    </svg>
+                    <span>Discord: Adko5558</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 px-4 bg-gray-900 text-white text-center">
+        <p> 2026 ZX-Spectrum.online. Všetky práva vyhradené.</p>
+        <p class="text-gray-400 mt-2">Moderné vývojové štúdio pre budúcnos</p>
+    </footer>
+
+    <div id="imageModal" class="image-modal">
+        <span class="close-modal">×</span>
+        <img class="modal-content" id="modalImage">
     </div>
 
-    <div class="spectrum-bar"></div>
+    <script>
 
-    <!-- AdSense skript ostáva zachovaný -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4821569873325904"
-     crossorigin="anonymous"></script>
+    async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4821569873325904"
+     crossorigin="anonymous">
+        // Modal functionality
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeModal = document.querySelector('.close-modal');
+
+        const screenshots = document.querySelectorAll('.screenshot-img');
+        screenshots.forEach(img => {
+            img.addEventListener('click', function() {
+                modal.style.display = 'block';
+                modalImg.src = this.src;
+            });
+        });
+        
+        // Close modal
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+        
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        
+        // Add star ratings
+        document.querySelectorAll('.text-yellow-500').forEach(rating => {
+            const ratingValue = rating.textContent;
+            if (ratingValue && !isNaN(ratingValue)) {
+                const stars = rating.nextElementSibling;
+                if (stars && stars.classList.contains('flex')) {
+                    const fullStars = Math.floor(ratingValue);
+                    const hasHalfStar = ratingValue % 1 !== 0;
+                    
+                    stars.innerHTML = '';
+                    for (let i = 0; i < 5; i++) {
+                        const star = document.createElement('span');
+                        star.textContent = '';
+                        star.className = 'text-yellow-500';
+                        
+                        if (i < fullStars) {
+                            star.textContent = '';
+                        } else if (i === fullStars && hasHalfStar) {
+                            star.textContent = '';
+                            star.style.opacity = '0.5';
+                        } else {
+                            star.textContent = '';
+                            star.style.opacity = '0.2';
+                        }
+                        
+                        stars.appendChild(star);
+                    }
+                }
+            }
+        });
+        
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
