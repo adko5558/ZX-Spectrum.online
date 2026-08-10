@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZX-Spectrum.online Hub</title>
+    <style>
+        /* Globálne a korporátne Cloudflare/Google štýly */
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #161b26;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --accent: #2563eb;
+            --accent-hover: #3b82f6;
+            --border: #232d42;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* Hlavička v štýle tech brány / proxy */
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #fff, var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Sekcia s rozcestníkom (Projekty / Proxy linky) */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 6rem;
+        }
+
+        /* --- ŠABLÓNA PRE TLAČIDLO/KARTU (STAČÍ SKOPÍROVAŤ CELÝ .card) --- */
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.15);
+        }
+
+        .card-info {
+            padding-right: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: #fff;
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .card-btn {
+            background-color: var(--accent);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: background-color 0.2s;
+        }
+
+        .card:hover .card-btn {
+            background-color: var(--accent-hover);
+        }
+
+        /* Sekcia Časovej osi (Discord Story style) */
+        .timeline-section {
+            margin-bottom: 6rem;
+        }
+
+        .timeline-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        /* Stredová čiara osi */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: var(--border);
+            transform: translateX(-50%);
+        }
+
+        /* --- ŠABLÓNA PRE BOD ČASOVEJ OSI (STAČÍ SKOPÍROVAŤ CELÝ .timeline-item) --- */
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            margin-bottom: 3rem;
+        }
+
+        /* Nepárne položky vľavo */
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 3rem;
+        }
+
+        /* Párne položky vpravo */
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 3rem;
+        }
+
+        /* Bodka na čiare */
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: #fff;
+            border: 4px solid var(--accent);
+            border-radius: 50%;
+            top: 2rem;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        /* Kontajner pre text v časovej osi */
+        .timeline-content {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .timeline-date {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .timeline-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Pätička s hľadaným copyright bannerom */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: auto;
+            width: 100%;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responzivita pre mobilné zariadenia */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 3rem !important;
+                padding-right: 0 !important;
+            }
+
+            .timeline-item:nth-child(odd)::after, 
+            .timeline-item:nth-child(even)::after {
+                left: 10px;
+                right: auto;
+            }
+
+            .card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .card-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- HLAVIČKA STRÁNKY -->
+        <header>
+            <h1>ZX-Spectrum.online Hub!</h1>
+            <p>The homepage & redirect hub.</p>
+        </header>
+<h4>This homepage has been replaced many times (see archive.org's Wayback Machine), so I decided to make this central hub where you can go to diferent parts of the website!</h4>
+<br>
+<br>
+        <!-- ROZCESTNÍK / PROXY LINKY -->
+        <div class="grid">
+		
+		
+		            <!-- KARTA 3: Môžeš skopírovať odtiaľto po </a> pre nový link -->
+            <a href="caineos.html" class="card">
+                <div class="card-info">
+                    <div class="card-title">CaineOS</div>
+                    <div class="card-desc">Fan operating system themed like TADC!</div>
+                </div>
+                <div class="card-btn">Redirect</div>
+            </a>
+
+            <!-- KARTA 1: Ukážka smerovania na starú verziu -->
+            <a href="old_index.html" class="card">
+                <div class="card-info">
+                    <div class="card-title">Minecraft Server Homepage</div>
+                    <div class="card-desc">OLD DISCONTINUED SERVER, DOESNT WORK ANYMORE!</div>
+                </div>
+                <div class="card-btn">Redirect</div>
+            </a>
+
+            <!-- KARTA 2: Ukážka pre ďalší projekt -->
+            <a href="old_index2.html" class="card">
+                <div class="card-info">
+                    <div class="card-title">Dev Studio Homepage</div>
+                    <div class="card-desc">Old homepage for our still existing dev studio, in Slovak Language.</div>
+                </div>
+                <div class="card-btn">Redirect</div>
+            </a>
+
+
+        </div>
+		
+		
+<!-- START: ABOUT ME SEKCE S OBRÁZKOM -->
+<div class="about-me-section" style="
+    background-color: #161b26; 
+    border: 1px solid #232d42; 
+    border-radius: 12px; 
+    padding: 2rem; 
+    margin-bottom: 4rem; 
+    display: flex; 
+    gap: 2rem; 
+    align-items: center;
+">
+    <!-- ĽAVÁ STRANA: Text o tebe -->
+    <div class="about-info" style="flex: 1; min-width: 0;">
+        <h3 style="color: #fff; font-size: 1.5rem; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">About Me</h3>
+        <p style="color: #9ca3af; font-size: 0.95rem; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6;">
+            Yo! I'm a developer living in Slovakia, I'm the owner/CEO of ZX-Spectrum.online and I made this all ;D I'm open for any collaborations.
+        </p>
+        <p style="color: #9ca3af; font-size: 0.95rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6;">
+            You can always find me on Discord. My name is Adko5558, you can add me as friend!
+        </p>
+    </div>
+
+    <!-- PRAVÁ STRANA: Samostatný obrázok bez zalamovania kontajneru -->
+    <div class="about-image-wrapper" style="flex: 0 0 350px;">
+        <img src="https://zx-spectrum.online/Screenshot%202026-08-10%20175422.png" alt="Discord Profile" style="
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            border: 1px solid #232d42;
+        ">
+    </div>
+</div>
+
+<!-- Responsivita pre tvoj <style> blok -->
+<style>
+    @media (max-width: 768px) {
+        .about-me-section {
+            flex-direction: column-reverse !important;
+            align-items: stretch !important;
+            gap: 1.5rem !important;
+            text-align: center;
+        }
+        .about-image-wrapper {
+            flex: 1 1 auto !important;
+            width: 100% !important;
+        }
+    }
+</style>
+<!-- END: ABOUT ME SEKCE S OBRÁZKOM -->
+
+
+        <!-- ČASOVÁ OS (DISCORD STORY STYLE) -->
+        <div class="timeline-section">
+            <h2>The Studio Journey</h2>
+            
+            <div class="timeline">
+
+                <!-- BOD 1 (Vľavo) -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024</div>
+                        <div class="timeline-text">Created a website on a HP computer with Windows Server 2008 R2 and IIS7. We were called 'Adko5558 Services' with some cool projects like Adkoogle or Adktube.</div>
+                    </div>
+                </div>
+
+                <!-- BOD 2 (Vpravo) -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025</div>
+                        <div class="timeline-text">Created AdkVM under Adko5558 Services. Our website has moved from IP 87.197.121.207 to adkvm.onthewifi.com. AdkVM was a virtual machine service for free with high specs and many benefits. We also created a Minecraft Server called 'ZX Spectrum! Minecraft Server' Our record with players was 12 at once (without alts or bots).</div>
+                    </div>
+                </div>
+
+                <!-- BOD 3 (Vľavo) - Môžeš kopírovať pre ďalšie udalosti -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Jan - Mar 2026</div>
+                        <div class="timeline-text">Many things has changed. Adko5558 Services has been renamed to 'ZX-Spectrum.online Dev Studio' and then 'ZX-Spectrum.online' (no more renames planned) and Minecraft Server went off because during the migration to our new rack server half of files were deleted because of my mistake including the world itself and all plugins and configuration. Most of the world has been recovered but it was extremly buggy and also there was not many players playing so we decided to shut it down for good. Server is still existing, but not running. We got a new server since March, it is HP ProLiant DL380 G7 with 60 GB of RAM and some storage.</div>
+                    </div>
+                </div>
+				
+				                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Mar 2026 - now</div>
+                        <div class="timeline-text">We made this beautiful looking hub homepage, rebranded old YouTube channel, and started doing some other stuff like making Google Play apps, making good music on Spotify or make Minecraft Mods on Modrinth.</div>
+                    </div>
+                </div>
+            </div>
+			<center><h1>...and we keep going!</h1></center>
+        </div>
+    </div>
+
+    <!-- COPYRIGHT BANNER -->
+    <footer>
+© 2026 ZX-Spectrum.online. All rights reserved. Made by Adko5558
+<br><br>
+CONTACT - Email: support@zx-spectrum.online | Discord: Adko5558
+</footer>
