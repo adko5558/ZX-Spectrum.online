@@ -1,1 +1,580 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://zx-spectrum.online/smp/ZX%20Spectrum%20SMP%20logo.png">
+    <!-- Primary Meta Tags (Google & Search Engines) -->
+<title>ZX Spectrum SMP | Best DonutSMP Inspired Minecraft Server</title>
+<meta name="title" content="ZX Spectrum SMP | Best DonutSMP Inspired Minecraft Server">
+<meta name="description" content="Join ZX Spectrum SMP, the ultimate DonutSMP inspired Minecraft server! Active community, Hardcore PvP, custom economy, and support for TLauncher (1.13 - 26.2). Play now!">
+<meta name="keywords" content="minecraft, donutsmp clone, zx spectrum smp, hardcore pvp, tlauncher minecraft server, cracked mc server, donutsmp inspired">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Adko5558">
+
+<!-- Open Graph / Facebook / Discord Meta Tags -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://zx-spectrum.online">
+<meta property="og:title" content="ZX Spectrum SMP | Best DonutSMP Inspired Server">
+<meta property="og:description" content="Join ZX Spectrum SMP! Hardcore PvP, custom economy, and full support for TLauncher/Cracked clients (1.13 - 26.2). Connect today!">
+<meta property="og:image" content="https://zx-spectrum.online/ZX%20Spectrum%20SMP%20Main%20Logo%20PNG.png">
+<meta property="og:site_name" content="ZX Spectrum SMP">
+
+<!-- Twitter Meta Tags (Pre správne zobrazenie aj tam) -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://zx-spectrum.online">
+<meta property="twitter:title" content="ZX Spectrum SMP | Best DonutSMP Inspired Server">
+<meta property="twitter:description" content="Join ZX Spectrum SMP! Hardcore PvP, custom economy, and full support for TLauncher/Cracked clients (1.13 - 26.2). Connect today!">
+<meta property="twitter:image" content="https://zx-spectrum.online/ZX%20Spectrum%20SMP%20Main%20Logo%20PNG.png">
+
+<!-- Theme Color (Zafarbí lištu mobilného prehliadača do červenej Donut farby) -->
+<meta name="theme-color" content="#e63946">
+
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #0b0c10;
+            --card-bg: rgba(21, 23, 30, 0.75);
+            --primary: #ef4444;
+            --primary-hover: #dc2626;
+            --secondary: #3b82f6;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --discord: #5865F2;
+            --success: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient background styling with reduced blur */
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: linear-gradient(rgba(11, 12, 16, 0.45), rgba(11, 12, 16, 0.85)), url('https://zx-spectrum.online/smp/background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(4px);
+            transform: scale(1.05);
+            z-index: -2;
+        }
+
+        .ambient-glow {
+            position: fixed;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-grow: 1;
+        }
+
+        /* Header Animation */
+        .logo-container {
+            margin-bottom: 30px;
+            text-align: center;
+            animation: floating 3.5s ease-in-out infinite;
+        }
+
+        .main-logo {
+            max-width: 100%;
+            height: auto;
+            width: 480px;
+            filter: drop-shadow(0 10px 25px rgba(239, 68, 68, 0.3));
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Connection Widget Section */
+        .connection-section {
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            margin-bottom: 40px;
+        }
+
+        .connection-row {
+            margin-bottom: 24px;
+        }
+
+        .connection-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .ip-label {
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ip-label.java { color: var(--primary); }
+        .ip-label.bedrock { color: var(--secondary); }
+
+        .ip-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ip-box:hover {
+            background: rgba(0, 0, 0, 0.55);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .ip-text-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .ip-text-group code {
+            font-family: monospace;
+            background: transparent;
+            color: #fff;
+        }
+
+        .ip-box .port-badge {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            margin-left: 8px;
+        }
+
+        .copy-icon {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+
+        .ip-box:hover .copy-icon {
+            color: #fff;
+        }
+
+        .sub-info {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            padding-left: 4px;
+            font-weight: 500;
+        }
+
+        /* Action Buttons */
+        .actions-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .discord-btn {
+            background: var(--discord);
+            color: white;
+            text-decoration: none;
+            padding: 16px 40px;
+            border-radius: 14px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 25px rgba(88, 101, 242, 0.35);
+            transition: all 0.25s ease;
+        }
+
+        .discord-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(88, 101, 242, 0.5);
+            filter: brightness(1.1);
+        }
+
+        /* Content Blocks */
+        .content-card {
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 35px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .content-card h2 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 18px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 10px;
+        }
+
+        .content-card h2 i {
+            color: var(--primary);
+        }
+
+        .content-card p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #d1d5db;
+            margin-bottom: 15px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .feature-item {
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 12px;
+            padding: 20px;
+            transition: border-color 0.2s;
+        }
+
+        .feature-item:hover {
+            border-color: rgba(239, 68, 68, 0.2);
+        }
+
+        .feature-item h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feature-item h3 i {
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        .feature-item p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        /* Footer styling */
+        footer {
+            width: 100%;
+            margin-top: auto;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(7, 8, 10, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .footer-logo {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: var(--primary);
+        }
+
+        /* Toast Notifications */
+        #toast-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+        }
+
+        .toast {
+            background: #10b981;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            animation: slideIn 0.3s ease forwards, fadeOut 0.3s ease 2.7s forwards;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(120%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(120%); opacity: 0; }
+        }
+
+        /* Responsive scaling */
+        @media (max-width: 640px) {
+            .main-logo { width: 320px; }
+            .ip-text-group { font-size: 0.95rem; }
+            .connection-section { padding: 20px; }
+            .discord-btn { width: 100%; justify-content: center; }
+            #toast-container { bottom: 20px; left: 20px; right: 20px; }
+            .toast { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-overlay"></div>
+    <div class="ambient-glow"></div>
+
+    <div class="container">
+        
+        <!-- Levitating Main Logo -->
+        <div class="logo-container">
+            <img src="https://zx-spectrum.online/smp/ZX%20Spectrum%20SMP%20Main%20Logo%20PNG.png" alt="ZX-Spectrum SMP Logo" class="main-logo">
+        </div>
+
+        <!-- Connection Widget (Java & Bedrock Fields) -->
+        <div class="connection-section">
+            
+            <!-- Java Row -->
+            <div class="connection-row">
+                <div class="ip-label java">
+                    <i class="fa-solid fa-cube"></i> Java Edition
+                </div>
+                <div class="ip-box" onclick="copyToClipboard('zx-spectrum.online', 'Java IP Address')">
+                    <div class="ip-text-group">
+                        <code>ZX-Spectrum.online</code>
+                    </div>
+                    <i class="fa-regular fa-copy copy-icon"></i>
+                </div>
+                <div class="sub-info">Version: 1.13 - 26.2 | Supports cracked launchers (like TLauncher)</div>
+            </div>
+
+            <!-- Bedrock Row -->
+            <div class="connection-row">
+                <div class="ip-label bedrock">
+                    <i class="fa-solid fa-mobile-screen-button"></i> Bedrock Edition
+                </div>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <div class="ip-box" style="flex: 2; min-width: 200px;" onclick="copyToClipboard('pe.zx-spectrum.online', 'Bedrock IP Address')">
+                        <div class="ip-text-group">
+                            <code>pe.ZX-Spectrum.online</code>
+                        </div>
+                        <i class="fa-regular fa-copy copy-icon"></i>
+                    </div>
+                    <div class="ip-box" style="flex: 1; min-width: 120px;" onclick="copyToClipboard('34969', 'Bedrock Port')">
+                        <div class="ip-text-group">
+                            <span>Port:</span> <code>34969</code>
+                        </div>
+                        <i class="fa-regular fa-copy copy-icon"></i>
+                    </div>
+                </div>
+                <div class="sub-info">Version: latest | Supports all devices that run Pocket/Bedrock edition</div>
+            </div>
+
+        </div>
+
+        <!-- Join Discord Button Container -->
+        <div class="actions-container">
+            <a href="https://zx-spectrum.online/discord" target="_blank" class="discord-btn">
+                <i class="fa-brands fa-discord"></i> Join Our Discord Server
+            </a>
+        </div>
+
+      <!-- SHOP BUTTON -->
+<a href="https://zx-spectrum.online" target="_blank" class="shop-btn">
+    <svg xmlns="http://w3.org" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M2.25 2.25a.75.75 0 0 0 0 1.5h1.386l2.23 7.561a2.25 2.25 0 0 0 2.247 1.589H18.75a2.25 2.25 0 0 0 2.247-1.59l2.23-7.562a.75.75 0 0 0-.722-.942H4.218L3.332 2.25H2.25Zm3.313 4.5h15.823l-1.42 4.814a.75.75 0 0 1-.749.53H7.876a.75.75 0 0 1-.749-.53L5.563 6.75ZM7.5 19.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0ZM18.75 21a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"/>
+    </svg>
+    Visit Server Shop
+</a>
+
+<!-- CSS ŠTÝLY (vlož do tvojho <style> bloku) -->
+<style>
+.shop-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 400px;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, #e63946 0%, #b5179e 100%);
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(230, 57, 70, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 10px auto;
+}
+
+.shop-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(181, 23, 158, 0.6);
+    filter: brightness(1.1);
+}
+
+.shop-btn svg {
+    width: 24px;
+    height: 24px;
+}
+</style>
+
+
+        <!-- Server Description Card -->
+        <div class="content-card">
+            <h2><i class="fa-solid fa-fire"></i> The Ultimate DonutSMP Experience</h2>
+            <p>Welcome to <strong>ZX-Spectrum.online SMP</strong>, the best DonutSMP inspired server yet! We have meticulously structured every single feature, mechanic, and economic detail to deliver an authentic, high-stakes hardcore environment that matches the intense spirit of the original DonutSMP platform.</p>
+            <p>Whether you choose to login via a premium setup or join using cracked clients like <strong>TLauncher</strong>, you will enjoy fluid, lag-free gameplay powered by high-performance servers configured under the expert management of our server owner, <strong>Adko5558</strong>.</p>
+        </div>
+
+        <!-- Dynamic Content Extensions (Long-form content) -->
+        <div class="content-card">
+            <h2><i class="fa-solid fa-heart-crack"></i> Hardcore PvP & Core Mechanics</h2>
+            <p>The rules of engagement are unforgiving. Survival requires precise tactical coordination, deep strategic planning, and absolute combat readiness at all times.</p>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3><i class="fa-solid fa-shield-halved"></i> Claims & Griefing</h3>
+                    <p>Protect your vital chest assets or rally your active guild alliances to stage massive, calculated base raids against enemy factions.</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fa-solid fa-wheat-invert"></i> Strategic Economy</h3>
+                    <p>Participate in a dynamic, player-driven economy featuring open auction houses, black-market merchants, and valuable material grinding zones.</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fa-solid fa-trophy"></i> Custom Events</h3>
+                    <p>Compete in regular server-wide events, KOTH matches, and secure specialized air-drop crates containing legendary armaments.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer Area -->
+    <footer>
+        <img src="https://zx-spectrum.online/smp/ZX%20Spectrum%20SMP%20logo.png" alt="Favicon Logo" class="footer-logo">
+        <p>&copy; 2026 Copyright ZX-Spectrum.online. All Rights Reserved.</p>
+        <p>Owner: <strong>Adko5558</strong> | Support: <a href="mailto:support@zx-spectrum.online">support@zx-spectrum.online</a></p>
+    </footer>
+
+    <!-- Notification system container -->
+    <div id="toast-container"></div>
+
+    <script>
+        function copyToClipboard(text, itemLabel) {
+            navigator.clipboard.writeText(text).then(() => {
+                const container = document.getElementById('toast-container');
+                
+                // Create unique element for current toast
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${itemLabel} copied successfully!`;
+                
+                container.appendChild(toast);
+                
+                // Clear out DOM memory footprint after animation cycles complete
+                setTimeout(() => {
+                    toast.remove();
+                }, 3000);
+            }).catch(err => {
+                console.error('Failed to execute clipboard copy routine: ', err);
+            });
+        }
+    </script>
+
+</body>
+</html>
